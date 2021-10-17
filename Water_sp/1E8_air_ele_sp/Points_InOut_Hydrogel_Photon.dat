@@ -1,0 +1,81 @@
+[ T-Cross ]
+    title = [t-cross] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -2.000000      # minimum value of x-mesh points
+     xmax =   2.000000      # maximum value of x-mesh points
+#    xdel =   4.000000      # mesh width of x-mesh points
+       nx =      1          # number of x-mesh points
+#    data = ( x(i), i = 1, nx + 1 )
+#          -2.00000E+00  2.00000E+00
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -2.000000      # minimum value of y-mesh points
+     ymax =   2.000000      # maximum value of y-mesh points
+#    ydel =   4.000000      # mesh width of y-mesh points
+       ny =      1          # number of y-mesh points
+#    data = ( y(i), i = 1, ny + 1 )
+#          -2.00000E+00  2.00000E+00
+   z-type =    1            # z-mesh is given by the below data
+       nz =      5          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+           -1.09000E+01  0.00000E+00  1.00000E+00  2.00000E+00  5.00000E+00
+            1.00000E+01
+   e-type =    1            # e-mesh is given by the below data
+       ne =      1          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+            1.00000E-03  2.00000E+01
+     unit =    1            # unit is [1/cm^2/source]
+     axis =    z            # axis of output
+     file = Points_InOut_Hydrogel_Photon.dat  # file name of output for the above axis
+   output = flux            # surface crossing flux
+     part =  photon   
+# kf/name :  22       
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :          16 (  0)           0 (  0)          16 (  0)
+
+#------------------------------------------------------------------------------
+#newpage:
+#   no. =  1   ix  =  1   iy  =  1
+#   x = (  -2.0000E+00  -   2.0000E+00  )
+#   y = (  -2.0000E+00  -   2.0000E+00  )
+#  ie =  1
+#   e = (   1.0000E-03  -   2.0000E+01  )
+
+x: z [cm]
+y:   Flux  [1/cm^2/source]                 
+p: xlin ylog afac(0.8) form(0.9)
+h:              x            y(photon  ),l3     n 
+#       z surface position   photon      r.err 
+               -1.0900E+01   2.9836E+08  0.0236
+                0.0000E+00   2.0072E+08  0.0083
+                1.0000E+00   1.9716E+08  0.0076
+                2.0000E+00   1.9411E+08  0.0073
+                5.0000E+00   1.8311E+08  0.0069
+                1.0000E+01   1.5765E+08  0.0070
+
+#   sum over    9.6000E+01   2.0518E+08
+
+'no. =  1,  ie =  1,  ix =  1,  iy =  1'
+msuc: {\huge [t-cross] in xyz mesh}
+msdr: {\it plotted by \ANGEL \version}
+msdl: {\it calculated by \PHITS  3.24}
+wt: s(0.7)
+\vspace{-3}
+  z surface crossing
+  area  &=&   1.6000E+01 [cm^2]
+  xmin  &=&  -2.0000E+00 [cm]
+  xmax  &=&   2.0000E+00 [cm]
+  ymin  &=&  -2.0000E+00 [cm]
+  ymax  &=&   2.0000E+00 [cm]
+  emin  &=&   1.0000E-03 [MeV]
+  emax  &=&   2.0000E+01 [MeV]
+e:
+ 
+# Information for Restart Calculation
+# This calculation was newly started
+# istdev =  2 # 1:Batch variance, 2:History variance
+# resc2  = 1.00918122299596806E-05 # Total source weight or Total source weight / maxcas
+# resc3  = 1.00000000000000000E+08 # Total history number or Total batch number
+# maxcas =    10000000 # History / Batch, only used for istdev=1
+# rijklst=  -2.2723022018578912E+152 # Next initial random number
+# bitrseed = 1101111110010001010110101011011001110100110101001100011110000101
