@@ -6,7 +6,7 @@ KUR HWNIF CO0000F-12cm.source test
 
 [Parameters]
  icntl    =           0     # (D=0) 3:ECH 5:NOR 6:SRC 7,8:GSH 11:DSH 12:DUMP
- maxcas   =      1.0E+7     # (D=10) number of particles per one batch
+ maxcas   =      1.0E+5     # (D=10) number of particles per one batch
  maxbch   =          10     # (D=10) number of batches
  emin(2)  =         0.0     # (D=1.0) cut-off energy of neutron (MeV)
  dmax(2)  =  20.0000000     # (D=emin(2)) data max. energy of neutron (MeV)
@@ -213,6 +213,30 @@ file    =   track_pdd_neutron.dat
 epsout  =   1
 angel = ylin  
 
+[T-Track]  $中性子束エネルギー分布(yz)
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   1
+ymin    =  -1.0
+ymax    =   1.0
+z-type  =   2
+nz      =   8
+zmin    =  -3.0
+zmax    =   11.0
+part  = neutron
+e-type  =   3
+ne = 1000
+emin = 1e-10
+emax = 10
+axis    =   eng
+file    =   track_eng_neutron.dat
+epsout  =   1
+gshow =    1
+
 [T-Cross] $Hydrogel_Nutronポイント
 mesh  = xyz
 x-type  =   2
@@ -285,6 +309,31 @@ file    =   track_yz_photon.dat
 epsout  =   1
 gshow =    1
 
+[T-Track]  $光子束エネルギー分布(yz)
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   1
+ymin    =  -1.0
+ymax    =   1.0
+z-type  =   2
+nz      =   8
+zmin    =  -3.0
+zmax    =   11.0
+part  = photon
+e-type  =   3
+ne = 1000
+emin = 1e-3
+emax = 10
+axis    =   eng
+file    =   track_eng_photon.dat
+epsout  =   1
+gshow =    1
+
+
 [T-Track]  $光子束分布PDD(yz)
 mesh  = xyz
 x-type  =   2
@@ -332,6 +381,30 @@ unit    =   1
 $output  =   flux
 axis    =   yz
 file    =   track_yz_electron.dat
+epsout  =   1
+gshow =    1
+
+[T-Track]  $電子束エネルギー分布(yz)
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   1
+ymin    =  -1.0
+ymax    =   1.0
+z-type  =   2
+nz      =   8
+zmin    =  -3.0
+zmax    =   11.0
+part  = electron
+e-type  =   3
+ne = 1000
+emin = 1e-4  $cut off=1keV
+emax = 10
+axis    =   eng
+file    =   track_eng_electron.dat
 epsout  =   1
 gshow =    1
 
