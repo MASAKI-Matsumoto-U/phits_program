@@ -1,0 +1,505 @@
+$OMP=0
+
+file  =   CO0000F-12cm.phits_inp
+[Title]
+KUR HWNIF CO0000F-12cm.source test
+
+[Parameters]
+ icntl    =           0     # (D=0) 3:ECH 5:NOR 6:SRC 7,8:GSH 11:DSH 12:DUMP
+ maxcas   =      1.0E+3     # (D=10) number of particles per one batch
+ maxbch   =          10     # (D=10) number of batches
+ emin(2)  =         0.0     # (D=1.0) cut-off energy of neutron (MeV)
+ dmax(2)  =  20.0000000     # (D=emin(2)) data max. energy of neutron (MeV)
+ emin(14) = 1.000000000E-03 # (D=1.d9) cut-off energy of photon (MeV)
+ dmax(14) =  20.0000000     # (D=emin(14)) data max. energy of photon (MeV)
+ itall    =           3     # (D=0) 0:no tally at batch, 1:same, 2:different
+ incut    =           1     # (D=0) cutoff neutron on file, 0:No, 2:with Time
+ igcut    =           1     # (D=0) cutoff photon on file, 0:No, 2:with Time
+ ides     =           1     # (D=1) 0/1 photons will/not produce electrons
+ nocoh    =           1     # (D=0) 0/1 photon coherent scatt. will/not occure
+$ file(1) =  /Users/kamomae/phits $for mac only
+$ istdev   =  -1              # 1: 1st calcuration, -1: re-calcuration
+ ireschk  =  1              # check re-calcuration
+ nspred = 2                 # 2: Lynch
+ nedisp = 1                 # 1: Landau Vavilov
+ negs   = 1                 # EGS(electron)
+ emin(12) = 0.001             # (electron cut off, D=0.1)
+ emin(13) = 0.001             # (positron cut off, D=0.1)
+set: c1[1.000]              # Thickness of the hydrogel (cm)　
+ 
+infl: {CO0000F-12cm.phits_source}
+infl: {CO0000F-12cm.phits_geom}
+
+
+[T-Gshow]
+mesh    =   xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   50
+ymin    =  -30
+ymax    =   30
+z-type  =   2
+nz      =   225
+zmin    =  -15
+zmax    =   35
+axis    =   yz
+file    =   KURsource_freeAir
+output  =   2
+epsout  =   1
+
+[ T - Deposit ] $空間線量分布(yz)-All
+mesh =  xyz            # mesh type is xyz scoring mesh
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   50
+ymin    =  -25
+ymax    =   25
+z-type  =   2
+nz      =   225
+zmin    =  -15
+zmax    =   35
+     unit =    0            # unit is 1=[MeV/cm^3/source], 0=[Gy/source]
+ material =  all            # (D=all) number of specific material
+   output =  dose           # total deposit energy
+     axis =    yz           # axis of output
+     file = deposit_yz_all.out     # file name of output for the above axis
+     part =  all electron photon neutron      
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+   epsout =    1            # (D=0) generate eps file by ANGEL
+
+[ T - Deposit ] $空間線量分布(yz)-Photon
+mesh =  xyz            # mesh type is xyz scoring mesh
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   50
+ymin    =  -25
+ymax    =   25
+z-type  =   2
+nz      =   225
+zmin    =  -15
+zmax    =   35
+     unit =    0            # unit is 1=[MeV/cm^3/source], 0=[Gy/source]
+ material =  all            # (D=all) number of specific material
+   output =  dose           # total deposit energy
+     axis =    yz           # axis of output
+     file = deposit_yz_photon.out     # file name of output for the above axis
+     part =  photon       
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+   epsout =    1            # (D=0) generate eps file by ANGEL
+
+[ T - Deposit ] $空間線量分布(yz)-Electron
+mesh =  xyz            # mesh type is xyz scoring mesh
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   50
+ymin    =  -25
+ymax    =   25
+z-type  =   2
+nz      =   225
+zmin    =  -15
+zmax    =   35
+     unit =    0            # unit is 1=[MeV/cm^3/source], 0=[Gy/source]
+ material =  all            # (D=all) number of specific material
+   output =  dose           # total deposit energy
+     axis =    yz           # axis of output
+     file = deposit_yz_electron.out     # file name of output for the above axis
+     part =  electron       
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+   epsout =    1            # (D=0) generate eps file by ANGEL
+
+[ T - Deposit ] $空間線量分布(yz)-Neutron
+mesh =  xyz            # mesh type is xyz scoring mesh
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   50
+ymin    =  -25
+ymax    =   25
+z-type  =   2
+nz      =   225
+zmin    =  -15
+zmax    =   35
+     unit =    0            # unit is 1=[MeV/cm^3/source], 0=[Gy/source]
+ material =  all            # (D=all) number of specific material
+   output =  dose           # total deposit energy
+     axis =    yz           # axis of output
+     file = deposit_yz_neutron.out     # file name of output for the above axis
+     part =  neutron       
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+   epsout =    1            # (D=0) generate eps file by ANGEL
+
+
+[ T - Deposit ] $空間線量分布(r-z)-All
+mesh =  r-z            # mesh type is xyz scoring mesh
+r-type  =   2
+nr      =   1
+rmin    =   0
+rmax    =   3.0
+z-type  =   2
+nz      =   225
+zmin    =  -15
+zmax    =   35
+     unit =    0            # unit is 1=[MeV/cm^3/source], 0=[Gy/source]
+ material =  all            # (D=all) number of specific material
+   output =  dose           # total deposit energy
+     axis =    rz           # axis of output
+     file = deposit_r_all.out     # file name of output for the above axis
+     part =  all electron photon neutron      
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+   epsout =    1            # (D=0) generate eps file by ANGEL
+
+
+[T-Track]  $中性子束分布(yz)
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   50
+ymin    =  -15
+ymax    =   15
+z-type  =   2
+nz      =   225
+zmin    =  -15
+zmax    =   35
+part  = neutron
+e-type  =   1
+ne      =   3
+  0.0  0.5e-6  10.0e-3 20.0
+unit    =   1
+$output  =   flux
+axis    =   yz
+file    =   track_yz_nutron.dat
+epsout  =   1
+gshow =    1
+
+[T-Track]  $中性子束分布PDD(yz)
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   1
+ymin    =  -1.0
+ymax    =   1.0
+z-type  =   2
+nz      =   370
+zmin    =  -12
+zmax    =   35
+part  = neutron
+e-type  =   1
+ne      =   3
+  0.0  0.5e-6  10.0e-3 20.0
+unit    =   1
+$output  =   flux
+axis    =   z
+file    =   track_pdd_neutron.dat
+epsout  =   1
+angel = ylin  
+
+[T-Cross] $Hydrogel_Nutronポイント
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -2.0
+xmax    =   2.0
+y-type  =   2
+ny      =   1
+ymin    =  -2
+ymax    =   2
+z-type  =   1
+nz      =   5
+ -10.9 0 1 c1+1 5 10
+part  = neutron
+e-type  =   1
+ne      =   3
+  0.0  0.5e-6  10.0e-3 20.0
+unit    =   1
+output  =   flux
+axis    =   z
+file    =   Points_InOut_Hydrogel_Neutron.dat
+
+[T-Cross]off $Hydrogel_Nutron_Hystgram
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -2.0
+xmax    =   2.0
+y-type  =   2
+ny      =   1
+ymin    =  -2
+ymax    =   2
+z-type  =   1
+nz      =   1
+ 1 c1+1
+part  = neutron
+e-type  =   2
+ne      =   20000
+emin    =  0
+emax    =   20.0
+unit    =   1
+output  =   flux
+axis    =   eng
+file    =   Hydrogel_Neutron_Hystgram.dat
+epsout =    1 
+angel = xlog  
+
+[T-Track]  $光子束分布(yz)
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   50
+ymin    =  -15
+ymax    =   15
+z-type  =   2
+nz      =   225
+zmin    =  -15
+zmax    =   35
+part  = photon
+e-type  =   1
+ne      =   1
+  1.000000000E-03 20
+unit    =   1
+$output  =   flux
+axis    =   yz
+file    =   track_yz_photon.dat
+epsout  =   1
+gshow =    1
+
+[T-Track]  $光子束分布PDD(yz)
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   1
+ymin    =  -1.0
+ymax    =   1.0
+z-type  =   2
+nz      =   370
+zmin    =  -12
+zmax    =   35
+part  = photon
+e-type  =   1
+ne      =   1
+  1.000000000E-03 20
+unit    =   1
+$output  =   flux
+axis    =   z
+file    =   track_pdd_photon.dat
+epsout  =   1
+angel = ylin 
+
+[T-Track]  $電子束分布(yz)
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   50
+ymin    =  -15
+ymax    =   15
+z-type  =   2
+nz      =   225
+zmin    =  -15
+zmax    =   35
+part  = electron
+e-type  =   1
+ne      =   1
+  1.000000000E-03 20
+unit    =   1
+$output  =   flux
+axis    =   yz
+file    =   track_yz_electron.dat
+epsout  =   1
+gshow =    1
+
+[T-Track]  $電子束分布PDD(yz)
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   1
+ymin    =  -1.0
+ymax    =   1.0
+z-type  =   2
+nz      =   370
+zmin    =  -12
+zmax    =   35
+part  = electron
+e-type  =   1
+ne      =   1
+  1.000000000E-03 20
+unit    =   1
+$output  =   flux
+axis    =   z
+file    =   track_pdd_electron.dat
+epsout  =   1
+angel = ylin 
+
+[T-Track]  $全粒子束分布(yz)
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   50
+ymin    =  -15
+ymax    =   15
+z-type  =   2
+nz      =   225
+zmin    =  -15
+zmax    =   35
+part  = all
+e-type  =   1
+ne      =   1
+  1.000000000E-03 20
+unit    =   1
+$output  =   flux
+axis    =   yz
+file    =   track_yz_all.dat
+epsout  =   1
+gshow =    1
+
+[T-Track]  $全粒子束分布PDD(yz)
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   1
+ymin    =  -1.0
+ymax    =   1.0
+z-type  =   2
+nz      =   370
+zmin    =  -12
+zmax    =   35
+part  = all
+e-type  =   1
+ne      =   1
+  1.000000000E-03 20
+unit    =   1
+$output  =   flux
+axis    =   z
+file    =   track_pdd_all.dat
+epsout  =   1
+angel = ylin 
+
+
+[T-Cross] $Hydrogel_photonポイント
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -2.0
+xmax    =   2.0
+y-type  =   2
+ny      =   1
+ymin    =  -2
+ymax    =   2
+z-type  =   1
+nz      =   5
+ -10.9 0 1 c1+1 5 10
+part  = photon
+e-type  =   1
+ne      =   1
+  1.000000000E-03 20
+unit    =   1
+output  =   flux
+axis    =   z
+file    =   Points_InOut_Hydrogel_Photon.dat
+
+[T-Cross]off $Hydrogel_Photon_Hystgram
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -2.0
+xmax    =   2.0
+y-type  =   2
+ny      =   1
+ymin    =  -2
+ymax    =   2
+z-type  =   1
+nz      =   1
+ 1 c1+1
+part  = photon
+e-type  =   2
+ne      =   20000
+emin    =  0
+emax    =   20.0
+unit    =   1
+output  =   flux
+axis    =   eng
+file    =   Hydrogel_Nutron_Hystgram.dat
+epsout =    1 
+angel = xlog  
+
+
+[T-Cross] $SourcePlane_Neutron
+mesh  = r-z
+z-type = 1
+nz    = 0
+ -10.9
+r-type = 2
+nr    = 30
+rmin  = 0.0
+rmax  = 30.0
+c
+part  = neutron
+e-type  =   1
+ne      =   3
+  0.0  0.5e-6  10.0e-3 20.0
+unit    =   1
+output  =   flux
+axis    =   r
+file    =   r_FluxDist_SourcePlane_Neutron.dat
+angel   =   xlin ylin
+epsout  =   1
+
+[T-Cross] $CollimatorAperture_Neutron
+mesh  = r-z
+z-type = 1
+nz    = 0
+ 0.0
+r-type = 2
+nr    = 30
+rmin  = 0.0
+rmax  = 30.0
+c
+part  = neutron
+e-type  =   1
+ne      =   3
+  0.0  0.5e-6  10.0e-3 20.0
+unit    =   1
+output  =   flux
+axis    =   r
+file    =   r_FluxDist_CollimatorAperture_Neutron.dat
+angel   =   xlin ylin
+epsout  =   1
+
+
+
