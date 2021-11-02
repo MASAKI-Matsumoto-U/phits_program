@@ -1,0 +1,40 @@
+[Material]
+$ 
+$ Polyethylene containing 50wt% natural LiF 
+$ density : 1.35 g/cm3
+mat[1]
+   1H   -9.64e-02
+  12C   -5.79e-01
+   6Li  -1.35e-02
+   7Li  -1.67e-01
+  19F   -4.95e-01
+$ 
+$ Natural water
+mat[2]
+   1H    2.0
+  16O    1.0
+MT2      lwtr.20t
+$
+MAT[ 7 ]   # Air (1.20e-3 g/cm3)　
+          14N         -75.524
+          16O         -23.139
+	  40Ar         -1.288
+
+[ Mat Name Color ]
+   mat                 name     size            color
+     0                 void     1.00        lightgray
+     1   Polyeth_FiL     1.00            pastelblue 
+     2                Water     1.00       pastelcyan     
+     7                  Air     1.00            white 
+[Cell]
+101   1   -1.35   -101  102       $ collimator body
+102   0           -102               $ aperture
+103   7 -1.20e-3  -103  101 110         $ buffer
+109  -1            103               $ outer void
+110   2    -1.0   -110             $Hydrogel
+
+[Surface]
+101  rpp    -30.0  30.0 -30.0  30.0 -10.0   0.0             $ collimator
+102  trc      0.0   0.0 -10.0   0.0   0.0  10.0  12.0  6.0  $ aperture
+103  rpp    -30.0  30.0 -30.0  30.0 -15.0  35.0             $ buffer
+110  rpp    -20.0  20.0 -20.0  20.0   0.0  30.0            $Hydrogel

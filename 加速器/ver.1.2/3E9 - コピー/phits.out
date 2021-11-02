@@ -1,0 +1,3241 @@
+           _________________________________________________________
+          |                                                         |
+          |       _/_/_/_/                                          |
+          |      _/      _/                  _/_/_/_/_/_/           |
+          |     _/      _/  _/      _/   _/      _/      _/_/_/_/_/ |
+          |    _/_/_/_/    _/      _/   _/      _/      _/          |
+          |   _/          _/_/_/_/_/   _/      _/       _/_/_/_/    |
+          |  _/          _/      _/   _/      _/              _/    |
+          | _/          _/      _/   _/      _/      _/_/_/_/_/     |
+          |                                                         |
+          |                                                         |
+          |       Particle and Heavy Ion Transport code System      |
+          |                      Version =  3.240                   |
+          |                       developed by                      |
+          |                                                         |
+          |                     Koji NIITA (RIST),                  |
+          |                                                         |
+          |  Tatsuhiko SATO, Yosuke IWAMOTO, Shintaro HASHIMOTO,    |
+          |    Tatsuhiko OGAWA, Takuya FURUTA, Shinichiro ABE,      |
+          |    Takeshi KAI, Norihiro MATSUDA, Yusuke MATSUYA,       |
+          |       Hunter RATLIFF, Lan YAO, Pi-En TSAI (JAEA),       |
+          |                                                         |
+          |            Hiroshi IWASE, Yasuhito SAKAKI (KEK),        |
+          |                                                         |
+          |           Nobuhiro SHIGYO (Kyushu University), and      |
+          |                                                         |
+          |        Lembit SIHVER (Technische Universitat Wien)      |
+          |                                                         |
+          |                 Last Revised  2021-03-12                |
+          |_________________________________________________________|
+
+                  ____________ [ Job Title ] ___________ 
+                 |                                      |
+                 |  KUR HWNIF CO0000F-12cm.source test  |
+                 |______________________________________|
+
+                        Starting Date = 2021-10-05
+                        Starting Time = 12h 17m 18
+
+>>> Input Echo >>>=============================================================
+
+[ Title ]
+KUR HWNIF CO0000F-12cm.source test
+
+[ Parameters ]
+ icntl    =           0     # (D=0) 3:ECH 5:NOR 6:SRC 7,8:GSH 11:DSH 12:DUMP
+ maxcas   =     1000000     # (D=10) number of particles per one batch
+ maxbch   =         300     # (D=10) number of batches
+ emin(2)  =         0.0     # (D=1.0e-11) cut-off energy of neutron (MeV)
+ dmax(2)  =  20.0000000     # (D=20.0) data max. energy of neutron (MeV)
+ emin(14) = 1.000000000E-03 # (D=1.0e-3) cut-off energy of photon (MeV)
+ dmax(14) =  20.0000000     # (D=1.0e+3) data max. energy of photon (MeV)
+ itall    =           1     # (D=0) 0:no tally at batch, 1:same, 2:different
+ incut    =           1     # (D=0) cutoff neutron on file, 0:No, 2:with Time
+ igcut    =           1     # (D=0) cutoff photon on file, 0:No, 2:with Time
+ ides     =           0     # (D=1) 0/1 photons will/not produce electrons
+ nocoh    =           1     # (D=0) 0/1 photon coherent scatt. will/not occure
+ istdev   =          -1     # (D=0) 0:Auto, 1,2:Batch or History variance, <0:Restart mode
+ ireschk  =           1     # (D=0) Restart, 0:Check consistency, 1:No check
+ nspred   =           2     # (D=0) 0:no, 1:original, 2:Lynch(Moliere), 10:ATIMA
+ nedisp   =           1     # (D=0) 0: no, 1: with e straggling, 10: ATIMA
+ negs     =           0     # (D=-1) =-1:original, =0:No, =1:EGS
+ emin(12) =  1.00000000     # (D=1.e+9) cut-off energy of electron (MeV)
+ emin(13) =  1.00000000     # (D=1.e+9) cut-off energy of positron (MeV)
+ file(12) = fort.12         # (D=fort.12) cutoff neutron file name
+ file(13) = fort.13         # (D=fort.13) cutoff photon file name
+
+[ Source ]
+  totfact =  9.90902E+12    # (D=1.0) global factor
+
+ <Source> =  3.23330E+09    # weight of this sub-source
+   s-type =   4             # cylindrical source
+     proj =  neutron        # kind of incident particle         
+       r0 =   30.000        # radius [cm]
+       r1 =   0.0000        # minimum radius [cm]
+       x0 =   0.0000        # (D=0.0) center position of x-axis [cm]
+       y0 =   0.0000        # (D=0.0) center position of y-axis [cm]
+       z0 =  -11.000        # minimum position of z-axis [cm]
+       z1 =  -11.000        # maximum position of z-axis [cm]
+      dir =  data           # z-direction of beam by below data
+   a-type =   1             # angular distribution given by cosine
+       na =   10            # number of cosine and weight
+                            # na>0: lin, na<0: log interpolation
+ #  data = ( a(i), w(i), i = 1, na ), amax
+  0.00000E+00  1.00000E-01  6.59939E-01  1.00000E-01  7.87179E-01  1.00000E-01
+  8.25038E-01  1.00000E-01  8.62897E-01  1.00000E-01  9.00756E-01  1.00000E-01
+  9.36497E-01  1.00000E-01  9.56648E-01  1.00000E-01  9.73658E-01  1.00000E-01
+  9.88045E-01  1.00000E-01  1.00000E+00
+   e-type =   1             # energy distribution given by data
+       ne =    6            # number of energy and weight
+                            # ne>0: lin, ne<0: log interpolation
+ #  data = ( e(i), w(i), i = 1, ne ), emax
+  1.00000E-11  4.45430E+05  4.14000E-07  7.85400E+08  3.06000E-06  1.06540E+09
+  2.26000E-05  6.72010E+08  1.67000E-04  4.60820E+08  1.23000E-03  2.49250E+08
+  9.12000E-03
+
+ <Source> =  1.39500E+08    # weight of this sub-source
+   s-type =   4             # cylindrical source
+     proj =  neutron        # kind of incident particle         
+       r0 =   30.000        # radius [cm]
+       r1 =   0.0000        # minimum radius [cm]
+       x0 =   0.0000        # (D=0.0) center position of x-axis [cm]
+       y0 =   0.0000        # (D=0.0) center position of y-axis [cm]
+       z0 =  -11.000        # minimum position of z-axis [cm]
+       z1 =  -11.000        # maximum position of z-axis [cm]
+      dir =  data           # z-direction of beam by below data
+   a-type =   1             # angular distribution given by cosine
+       na =   10            # number of cosine and weight
+                            # na>0: lin, na<0: log interpolation
+ #  data = ( a(i), w(i), i = 1, na ), amax
+  0.00000E+00  1.00000E-01  9.06310E-01  1.00000E-01  9.39690E-01  1.00000E-01
+  9.53720E-01  1.00000E-01  9.65930E-01  1.00000E-01  9.76300E-01  1.00000E-01
+  9.84810E-01  1.00000E-01  9.91440E-01  1.00000E-01  9.96190E-01  1.00000E-01
+  9.99050E-01  1.00000E-01  1.00000E+00
+   e-type =   1             # energy distribution given by data
+       ne =    5            # number of energy and weight
+                            # ne>0: lin, ne<0: log interpolation
+ #  data = ( e(i), w(i), i = 1, ne ), emax
+  9.12000E-03  9.06080E+07  6.74000E-02  2.63500E+07  4.08000E-01  1.45390E+07
+  1.35000E+00  7.23930E+06  4.49000E+00  7.94550E+05  1.49000E+01
+
+ <Source> =  1.31800E+08    # weight of this sub-source
+   s-type =   4             # cylindrical source
+     proj =  photon         # kind of incident particle         
+       r0 =   30.000        # radius [cm]
+       r1 =   0.0000        # minimum radius [cm]
+       x0 =   0.0000        # (D=0.0) center position of x-axis [cm]
+       y0 =   0.0000        # (D=0.0) center position of y-axis [cm]
+       z0 =  -11.000        # minimum position of z-axis [cm]
+       z1 =  -11.000        # maximum position of z-axis [cm]
+      dir =  data           # z-direction of beam by below data
+   a-type =   1             # angular distribution given by cosine
+       na =   10            # number of cosine and weight
+                            # na>0: lin, na<0: log interpolation
+ #  data = ( a(i), w(i), i = 1, na ), amax
+  0.00000E+00  1.00000E-01  6.59939E-01  1.00000E-01  7.87179E-01  1.00000E-01
+  8.25038E-01  1.00000E-01  8.62897E-01  1.00000E-01  9.00756E-01  1.00000E-01
+  9.36497E-01  1.00000E-01  9.56648E-01  1.00000E-01  9.73658E-01  1.00000E-01
+  9.88045E-01  1.00000E-01  1.00000E+00
+   e-type =   1             # energy distribution given by data
+       ne =    7            # number of energy and weight
+                            # ne>0: lin, ne<0: log interpolation
+ #  data = ( e(i), w(i), i = 1, ne ), emax
+  1.00000E-02  3.88420E+02  1.00000E-01  2.02360E+05  6.00000E-01  4.02000E+06
+  1.66000E+00  1.24270E+08  2.00000E+00  1.84700E+06  5.00000E+00  1.45320E+06
+  8.00000E+00  1.37170E+04  1.40000E+01
+
+[ Material ]
+MAT[ 1 ] 
+           1H        -9.6400000E-02
+          12C        -5.7900000E-01
+          6Li        -1.3500000E-02
+          7Li        -1.6700000E-01
+          19F        -4.9500000E-01
+MAT[ 2 ] 
+           1H         2.0000000E+00
+          16O         1.0000000E+00
+mt2      lwtr.20t  
+MAT[ 7 ] 
+          14N        -7.5524000E+01
+          16O        -2.3139000E+01
+         40Ar        -1.2880000E+00
+
+[ Cell ]
+ 100         7 -1.2000000E-03  -10 11 12 
+ 101         1 -1.3500000E+00  -11 12 
+ 102         7 -1.2000000E-03  -12 
+ 109        -1                 10 
+
+[ Surface ]
+ 10            rpp  -3.0000000E+01  3.0000000E+01 -3.0000000E+01
+                     3.0000000E+01 -1.5000000E+01  3.0000000E+01
+ 11            rpp  -3.0000000E+01  3.0000000E+01 -3.0000000E+01
+                     3.0000000E+01 -1.0000000E+01  0.0000000E+00
+ 12            trc   0.0000000E+00  0.0000000E+00 -1.0000000E+01
+                     0.0000000E+00  0.0000000E+00  1.0000000E+01
+                     1.2000000E+01  6.0000000E+00
+
+[ Mat Name Color ]
+   mat           name     size          color   # HSB color value
+     0           void     1.00      lightgray   # { -0.800  1.000  1.000 }
+     1    Polyeth_FiL     1.00     pastelblue   # {  0.250  0.400  1.000 }
+     2          Water     1.00     pastelcyan   # {  0.400  0.400  1.000 }
+     7            Air     1.00          white   # { -1.000  1.000  1.000 }
+
+[ T-Gshow ]
+    title = [t-gshow] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -1.000000      # minimum value of x-mesh points
+     xmax =   1.000000      # maximum value of x-mesh points
+#    xdel =   2.000000      # mesh width of x-mesh points
+       nx =      1          # number of x-mesh points
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -30.00000      # minimum value of y-mesh points
+     ymax =   30.00000      # maximum value of y-mesh points
+#    ydel =   1.200000      # mesh width of y-mesh points
+       ny =     50          # number of y-mesh points
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+     zmin =  -15.00000      # minimum value of z-mesh points
+     zmax =   35.00000      # maximum value of z-mesh points
+#    zdel =  0.2222222      # mesh width of z-mesh points
+       nz =    225          # number of z-mesh points
+     axis =   yz            # axis of output
+     file = KURsource_freeAir  # file name of output for the above axis
+   output =    2            # (D=2) 1:bnd, 2:bnd+mat, 3:bnd+num 4:bnd+mat+num
+    ginfo =    2            # (D=0) 0:no, 1:show in graph, 2:add file
+    resol =    1            # (D=1) resolution of gshow or rshow
+    width = 0.5000000       # (D=0.5) width of lines for gshow or rshow
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :         279 (  0)        5763 (  0)        6042 (  0)
+
+[ T-Deposit ]
+    title = [t-deposit] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -1.000000      # minimum value of x-mesh points
+     xmax =   1.000000      # maximum value of x-mesh points
+#    xdel =   2.000000      # mesh width of x-mesh points
+       nx =      1          # number of x-mesh points
+#    data = ( x(i), i = 1, nx + 1 )
+#          -1.00000E+00  1.00000E+00
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -25.00000      # minimum value of y-mesh points
+     ymax =   25.00000      # maximum value of y-mesh points
+#    ydel =   1.000000      # mesh width of y-mesh points
+       ny =     50          # number of y-mesh points
+#    data = ( y(i), i = 1, ny + 1 )
+#          -2.50000E+01 -2.40000E+01 -2.30000E+01 -2.20000E+01 -2.10000E+01
+#          -2.00000E+01 -1.90000E+01 -1.80000E+01 -1.70000E+01 -1.60000E+01
+#          -1.50000E+01 -1.40000E+01 -1.30000E+01 -1.20000E+01 -1.10000E+01
+#          -1.00000E+01 -9.00000E+00 -8.00000E+00 -7.00000E+00 -6.00000E+00
+#          -5.00000E+00 -4.00000E+00 -3.00000E+00 -2.00000E+00 -1.00000E+00
+#           0.00000E+00  1.00000E+00  2.00000E+00  3.00000E+00  4.00000E+00
+#           5.00000E+00  6.00000E+00  7.00000E+00  8.00000E+00  9.00000E+00
+#           1.00000E+01  1.10000E+01  1.20000E+01  1.30000E+01  1.40000E+01
+#           1.50000E+01  1.60000E+01  1.70000E+01  1.80000E+01  1.90000E+01
+#           2.00000E+01  2.10000E+01  2.20000E+01  2.30000E+01  2.40000E+01
+#           2.50000E+01
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+     zmin =  -15.00000      # minimum value of z-mesh points
+     zmax =   35.00000      # maximum value of z-mesh points
+#    zdel =  0.2222222      # mesh width of z-mesh points
+       nz =    225          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+#          -1.50000E+01 -1.47778E+01 -1.45556E+01 -1.43333E+01 -1.41111E+01
+#          -1.38889E+01 -1.36667E+01 -1.34444E+01 -1.32222E+01 -1.30000E+01
+#          -1.27778E+01 -1.25556E+01 -1.23333E+01 -1.21111E+01 -1.18889E+01
+#          -1.16667E+01 -1.14444E+01 -1.12222E+01 -1.10000E+01 -1.07778E+01
+#          -1.05556E+01 -1.03333E+01 -1.01111E+01 -9.88889E+00 -9.66667E+00
+#          -9.44444E+00 -9.22222E+00 -9.00000E+00 -8.77778E+00 -8.55556E+00
+#          -8.33333E+00 -8.11111E+00 -7.88889E+00 -7.66667E+00 -7.44444E+00
+#          -7.22222E+00 -7.00000E+00 -6.77778E+00 -6.55556E+00 -6.33333E+00
+#          -6.11111E+00 -5.88889E+00 -5.66667E+00 -5.44444E+00 -5.22222E+00
+#          -5.00000E+00 -4.77778E+00 -4.55556E+00 -4.33333E+00 -4.11111E+00
+#          -3.88889E+00 -3.66667E+00 -3.44444E+00 -3.22222E+00 -3.00000E+00
+#          -2.77778E+00 -2.55556E+00 -2.33333E+00 -2.11111E+00 -1.88889E+00
+#          -1.66667E+00 -1.44444E+00 -1.22222E+00 -1.00000E+00 -7.77778E-01
+#          -5.55556E-01 -3.33333E-01 -1.11111E-01  1.11111E-01  3.33333E-01
+#           5.55556E-01  7.77778E-01  1.00000E+00  1.22222E+00  1.44444E+00
+#           1.66667E+00  1.88889E+00  2.11111E+00  2.33333E+00  2.55556E+00
+#           2.77778E+00  3.00000E+00  3.22222E+00  3.44444E+00  3.66667E+00
+#           3.88889E+00  4.11111E+00  4.33333E+00  4.55556E+00  4.77778E+00
+#           5.00000E+00  5.22222E+00  5.44444E+00  5.66667E+00  5.88889E+00
+#           6.11111E+00  6.33333E+00  6.55556E+00  6.77778E+00  7.00000E+00
+#           7.22222E+00  7.44444E+00  7.66667E+00  7.88889E+00  8.11111E+00
+#           8.33333E+00  8.55556E+00  8.77778E+00  9.00000E+00  9.22222E+00
+#           9.44444E+00  9.66667E+00  9.88889E+00  1.01111E+01  1.03333E+01
+#           1.05556E+01  1.07778E+01  1.10000E+01  1.12222E+01  1.14444E+01
+#           1.16667E+01  1.18889E+01  1.21111E+01  1.23333E+01  1.25556E+01
+#           1.27778E+01  1.30000E+01  1.32222E+01  1.34444E+01  1.36667E+01
+#           1.38889E+01  1.41111E+01  1.43333E+01  1.45556E+01  1.47778E+01
+#           1.50000E+01  1.52222E+01  1.54444E+01  1.56667E+01  1.58889E+01
+#           1.61111E+01  1.63333E+01  1.65556E+01  1.67778E+01  1.70000E+01
+#           1.72222E+01  1.74444E+01  1.76667E+01  1.78889E+01  1.81111E+01
+#           1.83333E+01  1.85556E+01  1.87778E+01  1.90000E+01  1.92222E+01
+#           1.94444E+01  1.96667E+01  1.98889E+01  2.01111E+01  2.03333E+01
+#           2.05556E+01  2.07778E+01  2.10000E+01  2.12222E+01  2.14444E+01
+#           2.16667E+01  2.18889E+01  2.21111E+01  2.23333E+01  2.25556E+01
+#           2.27778E+01  2.30000E+01  2.32222E+01  2.34444E+01  2.36667E+01
+#           2.38889E+01  2.41111E+01  2.43333E+01  2.45556E+01  2.47778E+01
+#           2.50000E+01  2.52222E+01  2.54444E+01  2.56667E+01  2.58889E+01
+#           2.61111E+01  2.63333E+01  2.65556E+01  2.67778E+01  2.70000E+01
+#           2.72222E+01  2.74444E+01  2.76667E+01  2.78889E+01  2.81111E+01
+#           2.83333E+01  2.85556E+01  2.87778E+01  2.90000E+01  2.92222E+01
+#           2.94444E+01  2.96667E+01  2.98889E+01  3.01111E+01  3.03333E+01
+#           3.05556E+01  3.07778E+01  3.10000E+01  3.12222E+01  3.14444E+01
+#           3.16667E+01  3.18889E+01  3.21111E+01  3.23333E+01  3.25556E+01
+#           3.27778E+01  3.30000E+01  3.32222E+01  3.34444E+01  3.36667E+01
+#           3.38889E+01  3.41111E+01  3.43333E+01  3.45556E+01  3.47778E+01
+#           3.50000E+01
+     unit =    0            # unit is [Gy/source]
+   letmat =    0            # (D=0) mat ID for LET, 0:real mat, <0: electron for H2O
+  dedxfnc =    0            # (D=0) user defined multiplier, 0(no), 1, 2
+ material =  all            # (D=all) number of specific material
+   output =  dose           # total deposit energy
+  deposit =    0            # (D=0) 0-> total deposit dist, 1-> each process
+  2D-type =    3            # 1:Cont, 2:Clust, 3:Color, 4:xyz, 5:mat, 6:Clust+Cont, 7:Col+Cont
+     axis =    yz           # axis of output
+     file = deposit_yz_all.out  # file name of output for the above axis
+     part =  all        electron   photon     neutron  
+# kf/name :  0          11         22         2112     
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat 5:bmp style
+    resol =    1            # (D=1) resolution of gshow or rshow
+    width = 0.5000000       # (D=0.5) width of lines for gshow or rshow
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :         282 (  0)           0 (  0)         282 (  0)
+
+[ T-Deposit ]
+    title = [t-deposit] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -1.000000      # minimum value of x-mesh points
+     xmax =   1.000000      # maximum value of x-mesh points
+#    xdel =   2.000000      # mesh width of x-mesh points
+       nx =      1          # number of x-mesh points
+#    data = ( x(i), i = 1, nx + 1 )
+#          -1.00000E+00  1.00000E+00
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -25.00000      # minimum value of y-mesh points
+     ymax =   25.00000      # maximum value of y-mesh points
+#    ydel =   1.000000      # mesh width of y-mesh points
+       ny =     50          # number of y-mesh points
+#    data = ( y(i), i = 1, ny + 1 )
+#          -2.50000E+01 -2.40000E+01 -2.30000E+01 -2.20000E+01 -2.10000E+01
+#          -2.00000E+01 -1.90000E+01 -1.80000E+01 -1.70000E+01 -1.60000E+01
+#          -1.50000E+01 -1.40000E+01 -1.30000E+01 -1.20000E+01 -1.10000E+01
+#          -1.00000E+01 -9.00000E+00 -8.00000E+00 -7.00000E+00 -6.00000E+00
+#          -5.00000E+00 -4.00000E+00 -3.00000E+00 -2.00000E+00 -1.00000E+00
+#           0.00000E+00  1.00000E+00  2.00000E+00  3.00000E+00  4.00000E+00
+#           5.00000E+00  6.00000E+00  7.00000E+00  8.00000E+00  9.00000E+00
+#           1.00000E+01  1.10000E+01  1.20000E+01  1.30000E+01  1.40000E+01
+#           1.50000E+01  1.60000E+01  1.70000E+01  1.80000E+01  1.90000E+01
+#           2.00000E+01  2.10000E+01  2.20000E+01  2.30000E+01  2.40000E+01
+#           2.50000E+01
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+     zmin =  -15.00000      # minimum value of z-mesh points
+     zmax =   35.00000      # maximum value of z-mesh points
+#    zdel =  0.2222222      # mesh width of z-mesh points
+       nz =    225          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+#          -1.50000E+01 -1.47778E+01 -1.45556E+01 -1.43333E+01 -1.41111E+01
+#          -1.38889E+01 -1.36667E+01 -1.34444E+01 -1.32222E+01 -1.30000E+01
+#          -1.27778E+01 -1.25556E+01 -1.23333E+01 -1.21111E+01 -1.18889E+01
+#          -1.16667E+01 -1.14444E+01 -1.12222E+01 -1.10000E+01 -1.07778E+01
+#          -1.05556E+01 -1.03333E+01 -1.01111E+01 -9.88889E+00 -9.66667E+00
+#          -9.44444E+00 -9.22222E+00 -9.00000E+00 -8.77778E+00 -8.55556E+00
+#          -8.33333E+00 -8.11111E+00 -7.88889E+00 -7.66667E+00 -7.44444E+00
+#          -7.22222E+00 -7.00000E+00 -6.77778E+00 -6.55556E+00 -6.33333E+00
+#          -6.11111E+00 -5.88889E+00 -5.66667E+00 -5.44444E+00 -5.22222E+00
+#          -5.00000E+00 -4.77778E+00 -4.55556E+00 -4.33333E+00 -4.11111E+00
+#          -3.88889E+00 -3.66667E+00 -3.44444E+00 -3.22222E+00 -3.00000E+00
+#          -2.77778E+00 -2.55556E+00 -2.33333E+00 -2.11111E+00 -1.88889E+00
+#          -1.66667E+00 -1.44444E+00 -1.22222E+00 -1.00000E+00 -7.77778E-01
+#          -5.55556E-01 -3.33333E-01 -1.11111E-01  1.11111E-01  3.33333E-01
+#           5.55556E-01  7.77778E-01  1.00000E+00  1.22222E+00  1.44444E+00
+#           1.66667E+00  1.88889E+00  2.11111E+00  2.33333E+00  2.55556E+00
+#           2.77778E+00  3.00000E+00  3.22222E+00  3.44444E+00  3.66667E+00
+#           3.88889E+00  4.11111E+00  4.33333E+00  4.55556E+00  4.77778E+00
+#           5.00000E+00  5.22222E+00  5.44444E+00  5.66667E+00  5.88889E+00
+#           6.11111E+00  6.33333E+00  6.55556E+00  6.77778E+00  7.00000E+00
+#           7.22222E+00  7.44444E+00  7.66667E+00  7.88889E+00  8.11111E+00
+#           8.33333E+00  8.55556E+00  8.77778E+00  9.00000E+00  9.22222E+00
+#           9.44444E+00  9.66667E+00  9.88889E+00  1.01111E+01  1.03333E+01
+#           1.05556E+01  1.07778E+01  1.10000E+01  1.12222E+01  1.14444E+01
+#           1.16667E+01  1.18889E+01  1.21111E+01  1.23333E+01  1.25556E+01
+#           1.27778E+01  1.30000E+01  1.32222E+01  1.34444E+01  1.36667E+01
+#           1.38889E+01  1.41111E+01  1.43333E+01  1.45556E+01  1.47778E+01
+#           1.50000E+01  1.52222E+01  1.54444E+01  1.56667E+01  1.58889E+01
+#           1.61111E+01  1.63333E+01  1.65556E+01  1.67778E+01  1.70000E+01
+#           1.72222E+01  1.74444E+01  1.76667E+01  1.78889E+01  1.81111E+01
+#           1.83333E+01  1.85556E+01  1.87778E+01  1.90000E+01  1.92222E+01
+#           1.94444E+01  1.96667E+01  1.98889E+01  2.01111E+01  2.03333E+01
+#           2.05556E+01  2.07778E+01  2.10000E+01  2.12222E+01  2.14444E+01
+#           2.16667E+01  2.18889E+01  2.21111E+01  2.23333E+01  2.25556E+01
+#           2.27778E+01  2.30000E+01  2.32222E+01  2.34444E+01  2.36667E+01
+#           2.38889E+01  2.41111E+01  2.43333E+01  2.45556E+01  2.47778E+01
+#           2.50000E+01  2.52222E+01  2.54444E+01  2.56667E+01  2.58889E+01
+#           2.61111E+01  2.63333E+01  2.65556E+01  2.67778E+01  2.70000E+01
+#           2.72222E+01  2.74444E+01  2.76667E+01  2.78889E+01  2.81111E+01
+#           2.83333E+01  2.85556E+01  2.87778E+01  2.90000E+01  2.92222E+01
+#           2.94444E+01  2.96667E+01  2.98889E+01  3.01111E+01  3.03333E+01
+#           3.05556E+01  3.07778E+01  3.10000E+01  3.12222E+01  3.14444E+01
+#           3.16667E+01  3.18889E+01  3.21111E+01  3.23333E+01  3.25556E+01
+#           3.27778E+01  3.30000E+01  3.32222E+01  3.34444E+01  3.36667E+01
+#           3.38889E+01  3.41111E+01  3.43333E+01  3.45556E+01  3.47778E+01
+#           3.50000E+01
+     unit =    0            # unit is [Gy/source]
+   letmat =    0            # (D=0) mat ID for LET, 0:real mat, <0: electron for H2O
+  dedxfnc =    0            # (D=0) user defined multiplier, 0(no), 1, 2
+ material =  all            # (D=all) number of specific material
+   output =  dose           # total deposit energy
+  deposit =    0            # (D=0) 0-> total deposit dist, 1-> each process
+  2D-type =    3            # 1:Cont, 2:Clust, 3:Color, 4:xyz, 5:mat, 6:Clust+Cont, 7:Col+Cont
+     axis =    yz           # axis of output
+     file = deposit_yz_photon.out  # file name of output for the above axis
+     part =  photon   
+# kf/name :  22       
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat 5:bmp style
+    resol =    1            # (D=1) resolution of gshow or rshow
+    width = 0.5000000       # (D=0.5) width of lines for gshow or rshow
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :         282 (  0)           0 (  0)         282 (  0)
+
+[ T-Deposit ]
+    title = [t-deposit] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -1.000000      # minimum value of x-mesh points
+     xmax =   1.000000      # maximum value of x-mesh points
+#    xdel =   2.000000      # mesh width of x-mesh points
+       nx =      1          # number of x-mesh points
+#    data = ( x(i), i = 1, nx + 1 )
+#          -1.00000E+00  1.00000E+00
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -25.00000      # minimum value of y-mesh points
+     ymax =   25.00000      # maximum value of y-mesh points
+#    ydel =   1.000000      # mesh width of y-mesh points
+       ny =     50          # number of y-mesh points
+#    data = ( y(i), i = 1, ny + 1 )
+#          -2.50000E+01 -2.40000E+01 -2.30000E+01 -2.20000E+01 -2.10000E+01
+#          -2.00000E+01 -1.90000E+01 -1.80000E+01 -1.70000E+01 -1.60000E+01
+#          -1.50000E+01 -1.40000E+01 -1.30000E+01 -1.20000E+01 -1.10000E+01
+#          -1.00000E+01 -9.00000E+00 -8.00000E+00 -7.00000E+00 -6.00000E+00
+#          -5.00000E+00 -4.00000E+00 -3.00000E+00 -2.00000E+00 -1.00000E+00
+#           0.00000E+00  1.00000E+00  2.00000E+00  3.00000E+00  4.00000E+00
+#           5.00000E+00  6.00000E+00  7.00000E+00  8.00000E+00  9.00000E+00
+#           1.00000E+01  1.10000E+01  1.20000E+01  1.30000E+01  1.40000E+01
+#           1.50000E+01  1.60000E+01  1.70000E+01  1.80000E+01  1.90000E+01
+#           2.00000E+01  2.10000E+01  2.20000E+01  2.30000E+01  2.40000E+01
+#           2.50000E+01
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+     zmin =  -15.00000      # minimum value of z-mesh points
+     zmax =   35.00000      # maximum value of z-mesh points
+#    zdel =  0.2222222      # mesh width of z-mesh points
+       nz =    225          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+#          -1.50000E+01 -1.47778E+01 -1.45556E+01 -1.43333E+01 -1.41111E+01
+#          -1.38889E+01 -1.36667E+01 -1.34444E+01 -1.32222E+01 -1.30000E+01
+#          -1.27778E+01 -1.25556E+01 -1.23333E+01 -1.21111E+01 -1.18889E+01
+#          -1.16667E+01 -1.14444E+01 -1.12222E+01 -1.10000E+01 -1.07778E+01
+#          -1.05556E+01 -1.03333E+01 -1.01111E+01 -9.88889E+00 -9.66667E+00
+#          -9.44444E+00 -9.22222E+00 -9.00000E+00 -8.77778E+00 -8.55556E+00
+#          -8.33333E+00 -8.11111E+00 -7.88889E+00 -7.66667E+00 -7.44444E+00
+#          -7.22222E+00 -7.00000E+00 -6.77778E+00 -6.55556E+00 -6.33333E+00
+#          -6.11111E+00 -5.88889E+00 -5.66667E+00 -5.44444E+00 -5.22222E+00
+#          -5.00000E+00 -4.77778E+00 -4.55556E+00 -4.33333E+00 -4.11111E+00
+#          -3.88889E+00 -3.66667E+00 -3.44444E+00 -3.22222E+00 -3.00000E+00
+#          -2.77778E+00 -2.55556E+00 -2.33333E+00 -2.11111E+00 -1.88889E+00
+#          -1.66667E+00 -1.44444E+00 -1.22222E+00 -1.00000E+00 -7.77778E-01
+#          -5.55556E-01 -3.33333E-01 -1.11111E-01  1.11111E-01  3.33333E-01
+#           5.55556E-01  7.77778E-01  1.00000E+00  1.22222E+00  1.44444E+00
+#           1.66667E+00  1.88889E+00  2.11111E+00  2.33333E+00  2.55556E+00
+#           2.77778E+00  3.00000E+00  3.22222E+00  3.44444E+00  3.66667E+00
+#           3.88889E+00  4.11111E+00  4.33333E+00  4.55556E+00  4.77778E+00
+#           5.00000E+00  5.22222E+00  5.44444E+00  5.66667E+00  5.88889E+00
+#           6.11111E+00  6.33333E+00  6.55556E+00  6.77778E+00  7.00000E+00
+#           7.22222E+00  7.44444E+00  7.66667E+00  7.88889E+00  8.11111E+00
+#           8.33333E+00  8.55556E+00  8.77778E+00  9.00000E+00  9.22222E+00
+#           9.44444E+00  9.66667E+00  9.88889E+00  1.01111E+01  1.03333E+01
+#           1.05556E+01  1.07778E+01  1.10000E+01  1.12222E+01  1.14444E+01
+#           1.16667E+01  1.18889E+01  1.21111E+01  1.23333E+01  1.25556E+01
+#           1.27778E+01  1.30000E+01  1.32222E+01  1.34444E+01  1.36667E+01
+#           1.38889E+01  1.41111E+01  1.43333E+01  1.45556E+01  1.47778E+01
+#           1.50000E+01  1.52222E+01  1.54444E+01  1.56667E+01  1.58889E+01
+#           1.61111E+01  1.63333E+01  1.65556E+01  1.67778E+01  1.70000E+01
+#           1.72222E+01  1.74444E+01  1.76667E+01  1.78889E+01  1.81111E+01
+#           1.83333E+01  1.85556E+01  1.87778E+01  1.90000E+01  1.92222E+01
+#           1.94444E+01  1.96667E+01  1.98889E+01  2.01111E+01  2.03333E+01
+#           2.05556E+01  2.07778E+01  2.10000E+01  2.12222E+01  2.14444E+01
+#           2.16667E+01  2.18889E+01  2.21111E+01  2.23333E+01  2.25556E+01
+#           2.27778E+01  2.30000E+01  2.32222E+01  2.34444E+01  2.36667E+01
+#           2.38889E+01  2.41111E+01  2.43333E+01  2.45556E+01  2.47778E+01
+#           2.50000E+01  2.52222E+01  2.54444E+01  2.56667E+01  2.58889E+01
+#           2.61111E+01  2.63333E+01  2.65556E+01  2.67778E+01  2.70000E+01
+#           2.72222E+01  2.74444E+01  2.76667E+01  2.78889E+01  2.81111E+01
+#           2.83333E+01  2.85556E+01  2.87778E+01  2.90000E+01  2.92222E+01
+#           2.94444E+01  2.96667E+01  2.98889E+01  3.01111E+01  3.03333E+01
+#           3.05556E+01  3.07778E+01  3.10000E+01  3.12222E+01  3.14444E+01
+#           3.16667E+01  3.18889E+01  3.21111E+01  3.23333E+01  3.25556E+01
+#           3.27778E+01  3.30000E+01  3.32222E+01  3.34444E+01  3.36667E+01
+#           3.38889E+01  3.41111E+01  3.43333E+01  3.45556E+01  3.47778E+01
+#           3.50000E+01
+     unit =    0            # unit is [Gy/source]
+   letmat =    0            # (D=0) mat ID for LET, 0:real mat, <0: electron for H2O
+  dedxfnc =    0            # (D=0) user defined multiplier, 0(no), 1, 2
+ material =  all            # (D=all) number of specific material
+   output =  dose           # total deposit energy
+  deposit =    0            # (D=0) 0-> total deposit dist, 1-> each process
+  2D-type =    3            # 1:Cont, 2:Clust, 3:Color, 4:xyz, 5:mat, 6:Clust+Cont, 7:Col+Cont
+     axis =    yz           # axis of output
+     file = deposit_yz_electron.out  # file name of output for the above axis
+     part =  electron 
+# kf/name :  11       
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat 5:bmp style
+    resol =    1            # (D=1) resolution of gshow or rshow
+    width = 0.5000000       # (D=0.5) width of lines for gshow or rshow
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :         282 (  0)           0 (  0)         282 (  0)
+
+[ T-Deposit ]
+    title = [t-deposit] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -1.000000      # minimum value of x-mesh points
+     xmax =   1.000000      # maximum value of x-mesh points
+#    xdel =   2.000000      # mesh width of x-mesh points
+       nx =      1          # number of x-mesh points
+#    data = ( x(i), i = 1, nx + 1 )
+#          -1.00000E+00  1.00000E+00
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -25.00000      # minimum value of y-mesh points
+     ymax =   25.00000      # maximum value of y-mesh points
+#    ydel =   1.000000      # mesh width of y-mesh points
+       ny =     50          # number of y-mesh points
+#    data = ( y(i), i = 1, ny + 1 )
+#          -2.50000E+01 -2.40000E+01 -2.30000E+01 -2.20000E+01 -2.10000E+01
+#          -2.00000E+01 -1.90000E+01 -1.80000E+01 -1.70000E+01 -1.60000E+01
+#          -1.50000E+01 -1.40000E+01 -1.30000E+01 -1.20000E+01 -1.10000E+01
+#          -1.00000E+01 -9.00000E+00 -8.00000E+00 -7.00000E+00 -6.00000E+00
+#          -5.00000E+00 -4.00000E+00 -3.00000E+00 -2.00000E+00 -1.00000E+00
+#           0.00000E+00  1.00000E+00  2.00000E+00  3.00000E+00  4.00000E+00
+#           5.00000E+00  6.00000E+00  7.00000E+00  8.00000E+00  9.00000E+00
+#           1.00000E+01  1.10000E+01  1.20000E+01  1.30000E+01  1.40000E+01
+#           1.50000E+01  1.60000E+01  1.70000E+01  1.80000E+01  1.90000E+01
+#           2.00000E+01  2.10000E+01  2.20000E+01  2.30000E+01  2.40000E+01
+#           2.50000E+01
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+     zmin =  -15.00000      # minimum value of z-mesh points
+     zmax =   35.00000      # maximum value of z-mesh points
+#    zdel =  0.2222222      # mesh width of z-mesh points
+       nz =    225          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+#          -1.50000E+01 -1.47778E+01 -1.45556E+01 -1.43333E+01 -1.41111E+01
+#          -1.38889E+01 -1.36667E+01 -1.34444E+01 -1.32222E+01 -1.30000E+01
+#          -1.27778E+01 -1.25556E+01 -1.23333E+01 -1.21111E+01 -1.18889E+01
+#          -1.16667E+01 -1.14444E+01 -1.12222E+01 -1.10000E+01 -1.07778E+01
+#          -1.05556E+01 -1.03333E+01 -1.01111E+01 -9.88889E+00 -9.66667E+00
+#          -9.44444E+00 -9.22222E+00 -9.00000E+00 -8.77778E+00 -8.55556E+00
+#          -8.33333E+00 -8.11111E+00 -7.88889E+00 -7.66667E+00 -7.44444E+00
+#          -7.22222E+00 -7.00000E+00 -6.77778E+00 -6.55556E+00 -6.33333E+00
+#          -6.11111E+00 -5.88889E+00 -5.66667E+00 -5.44444E+00 -5.22222E+00
+#          -5.00000E+00 -4.77778E+00 -4.55556E+00 -4.33333E+00 -4.11111E+00
+#          -3.88889E+00 -3.66667E+00 -3.44444E+00 -3.22222E+00 -3.00000E+00
+#          -2.77778E+00 -2.55556E+00 -2.33333E+00 -2.11111E+00 -1.88889E+00
+#          -1.66667E+00 -1.44444E+00 -1.22222E+00 -1.00000E+00 -7.77778E-01
+#          -5.55556E-01 -3.33333E-01 -1.11111E-01  1.11111E-01  3.33333E-01
+#           5.55556E-01  7.77778E-01  1.00000E+00  1.22222E+00  1.44444E+00
+#           1.66667E+00  1.88889E+00  2.11111E+00  2.33333E+00  2.55556E+00
+#           2.77778E+00  3.00000E+00  3.22222E+00  3.44444E+00  3.66667E+00
+#           3.88889E+00  4.11111E+00  4.33333E+00  4.55556E+00  4.77778E+00
+#           5.00000E+00  5.22222E+00  5.44444E+00  5.66667E+00  5.88889E+00
+#           6.11111E+00  6.33333E+00  6.55556E+00  6.77778E+00  7.00000E+00
+#           7.22222E+00  7.44444E+00  7.66667E+00  7.88889E+00  8.11111E+00
+#           8.33333E+00  8.55556E+00  8.77778E+00  9.00000E+00  9.22222E+00
+#           9.44444E+00  9.66667E+00  9.88889E+00  1.01111E+01  1.03333E+01
+#           1.05556E+01  1.07778E+01  1.10000E+01  1.12222E+01  1.14444E+01
+#           1.16667E+01  1.18889E+01  1.21111E+01  1.23333E+01  1.25556E+01
+#           1.27778E+01  1.30000E+01  1.32222E+01  1.34444E+01  1.36667E+01
+#           1.38889E+01  1.41111E+01  1.43333E+01  1.45556E+01  1.47778E+01
+#           1.50000E+01  1.52222E+01  1.54444E+01  1.56667E+01  1.58889E+01
+#           1.61111E+01  1.63333E+01  1.65556E+01  1.67778E+01  1.70000E+01
+#           1.72222E+01  1.74444E+01  1.76667E+01  1.78889E+01  1.81111E+01
+#           1.83333E+01  1.85556E+01  1.87778E+01  1.90000E+01  1.92222E+01
+#           1.94444E+01  1.96667E+01  1.98889E+01  2.01111E+01  2.03333E+01
+#           2.05556E+01  2.07778E+01  2.10000E+01  2.12222E+01  2.14444E+01
+#           2.16667E+01  2.18889E+01  2.21111E+01  2.23333E+01  2.25556E+01
+#           2.27778E+01  2.30000E+01  2.32222E+01  2.34444E+01  2.36667E+01
+#           2.38889E+01  2.41111E+01  2.43333E+01  2.45556E+01  2.47778E+01
+#           2.50000E+01  2.52222E+01  2.54444E+01  2.56667E+01  2.58889E+01
+#           2.61111E+01  2.63333E+01  2.65556E+01  2.67778E+01  2.70000E+01
+#           2.72222E+01  2.74444E+01  2.76667E+01  2.78889E+01  2.81111E+01
+#           2.83333E+01  2.85556E+01  2.87778E+01  2.90000E+01  2.92222E+01
+#           2.94444E+01  2.96667E+01  2.98889E+01  3.01111E+01  3.03333E+01
+#           3.05556E+01  3.07778E+01  3.10000E+01  3.12222E+01  3.14444E+01
+#           3.16667E+01  3.18889E+01  3.21111E+01  3.23333E+01  3.25556E+01
+#           3.27778E+01  3.30000E+01  3.32222E+01  3.34444E+01  3.36667E+01
+#           3.38889E+01  3.41111E+01  3.43333E+01  3.45556E+01  3.47778E+01
+#           3.50000E+01
+     unit =    0            # unit is [Gy/source]
+   letmat =    0            # (D=0) mat ID for LET, 0:real mat, <0: electron for H2O
+  dedxfnc =    0            # (D=0) user defined multiplier, 0(no), 1, 2
+ material =  all            # (D=all) number of specific material
+   output =  dose           # total deposit energy
+  deposit =    0            # (D=0) 0-> total deposit dist, 1-> each process
+  2D-type =    3            # 1:Cont, 2:Clust, 3:Color, 4:xyz, 5:mat, 6:Clust+Cont, 7:Col+Cont
+     axis =    yz           # axis of output
+     file = deposit_yz_neutron.out  # file name of output for the above axis
+     part =  neutron  
+# kf/name :  2112     
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat 5:bmp style
+    resol =    1            # (D=1) resolution of gshow or rshow
+    width = 0.5000000       # (D=0.5) width of lines for gshow or rshow
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :         282 (  0)           0 (  0)         282 (  0)
+
+[ T-Deposit ]
+    title = [t-deposit] in r-z mesh
+     mesh =  r-z            # mesh type is r-z scoring mesh
+       x0 =   0.000000      # center x-position of r-z mesh
+       y0 =   0.000000      # center y-position of r-z mesh
+   r-type =    2            # r-mesh is linear given by rmin, rmax and nr
+     rmin =   0.000000      # minimum value of r-mesh points
+     rmax =   3.000000      # maximum value of r-mesh points
+#    rdel =   3.000000      # mesh width of r-mesh points
+       nr =      1          # number of r-mesh points
+#    data = ( r(i), i = 1, nr + 1 )
+#           0.00000E+00  3.00000E+00
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+     zmin =  -15.00000      # minimum value of z-mesh points
+     zmax =   35.00000      # maximum value of z-mesh points
+#    zdel =  0.2222222      # mesh width of z-mesh points
+       nz =    225          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+#          -1.50000E+01 -1.47778E+01 -1.45556E+01 -1.43333E+01 -1.41111E+01
+#          -1.38889E+01 -1.36667E+01 -1.34444E+01 -1.32222E+01 -1.30000E+01
+#          -1.27778E+01 -1.25556E+01 -1.23333E+01 -1.21111E+01 -1.18889E+01
+#          -1.16667E+01 -1.14444E+01 -1.12222E+01 -1.10000E+01 -1.07778E+01
+#          -1.05556E+01 -1.03333E+01 -1.01111E+01 -9.88889E+00 -9.66667E+00
+#          -9.44444E+00 -9.22222E+00 -9.00000E+00 -8.77778E+00 -8.55556E+00
+#          -8.33333E+00 -8.11111E+00 -7.88889E+00 -7.66667E+00 -7.44444E+00
+#          -7.22222E+00 -7.00000E+00 -6.77778E+00 -6.55556E+00 -6.33333E+00
+#          -6.11111E+00 -5.88889E+00 -5.66667E+00 -5.44444E+00 -5.22222E+00
+#          -5.00000E+00 -4.77778E+00 -4.55556E+00 -4.33333E+00 -4.11111E+00
+#          -3.88889E+00 -3.66667E+00 -3.44444E+00 -3.22222E+00 -3.00000E+00
+#          -2.77778E+00 -2.55556E+00 -2.33333E+00 -2.11111E+00 -1.88889E+00
+#          -1.66667E+00 -1.44444E+00 -1.22222E+00 -1.00000E+00 -7.77778E-01
+#          -5.55556E-01 -3.33333E-01 -1.11111E-01  1.11111E-01  3.33333E-01
+#           5.55556E-01  7.77778E-01  1.00000E+00  1.22222E+00  1.44444E+00
+#           1.66667E+00  1.88889E+00  2.11111E+00  2.33333E+00  2.55556E+00
+#           2.77778E+00  3.00000E+00  3.22222E+00  3.44444E+00  3.66667E+00
+#           3.88889E+00  4.11111E+00  4.33333E+00  4.55556E+00  4.77778E+00
+#           5.00000E+00  5.22222E+00  5.44444E+00  5.66667E+00  5.88889E+00
+#           6.11111E+00  6.33333E+00  6.55556E+00  6.77778E+00  7.00000E+00
+#           7.22222E+00  7.44444E+00  7.66667E+00  7.88889E+00  8.11111E+00
+#           8.33333E+00  8.55556E+00  8.77778E+00  9.00000E+00  9.22222E+00
+#           9.44444E+00  9.66667E+00  9.88889E+00  1.01111E+01  1.03333E+01
+#           1.05556E+01  1.07778E+01  1.10000E+01  1.12222E+01  1.14444E+01
+#           1.16667E+01  1.18889E+01  1.21111E+01  1.23333E+01  1.25556E+01
+#           1.27778E+01  1.30000E+01  1.32222E+01  1.34444E+01  1.36667E+01
+#           1.38889E+01  1.41111E+01  1.43333E+01  1.45556E+01  1.47778E+01
+#           1.50000E+01  1.52222E+01  1.54444E+01  1.56667E+01  1.58889E+01
+#           1.61111E+01  1.63333E+01  1.65556E+01  1.67778E+01  1.70000E+01
+#           1.72222E+01  1.74444E+01  1.76667E+01  1.78889E+01  1.81111E+01
+#           1.83333E+01  1.85556E+01  1.87778E+01  1.90000E+01  1.92222E+01
+#           1.94444E+01  1.96667E+01  1.98889E+01  2.01111E+01  2.03333E+01
+#           2.05556E+01  2.07778E+01  2.10000E+01  2.12222E+01  2.14444E+01
+#           2.16667E+01  2.18889E+01  2.21111E+01  2.23333E+01  2.25556E+01
+#           2.27778E+01  2.30000E+01  2.32222E+01  2.34444E+01  2.36667E+01
+#           2.38889E+01  2.41111E+01  2.43333E+01  2.45556E+01  2.47778E+01
+#           2.50000E+01  2.52222E+01  2.54444E+01  2.56667E+01  2.58889E+01
+#           2.61111E+01  2.63333E+01  2.65556E+01  2.67778E+01  2.70000E+01
+#           2.72222E+01  2.74444E+01  2.76667E+01  2.78889E+01  2.81111E+01
+#           2.83333E+01  2.85556E+01  2.87778E+01  2.90000E+01  2.92222E+01
+#           2.94444E+01  2.96667E+01  2.98889E+01  3.01111E+01  3.03333E+01
+#           3.05556E+01  3.07778E+01  3.10000E+01  3.12222E+01  3.14444E+01
+#           3.16667E+01  3.18889E+01  3.21111E+01  3.23333E+01  3.25556E+01
+#           3.27778E+01  3.30000E+01  3.32222E+01  3.34444E+01  3.36667E+01
+#           3.38889E+01  3.41111E+01  3.43333E+01  3.45556E+01  3.47778E+01
+#           3.50000E+01
+     unit =    0            # unit is [Gy/source]
+   letmat =    0            # (D=0) mat ID for LET, 0:real mat, <0: electron for H2O
+  dedxfnc =    0            # (D=0) user defined multiplier, 0(no), 1, 2
+ material =  all            # (D=all) number of specific material
+   output =  dose           # total deposit energy
+  deposit =    0            # (D=0) 0-> total deposit dist, 1-> each process
+  2D-type =    3            # 1:Cont, 2:Clust, 3:Color, 4:xyz, 5:mat, 6:Clust+Cont, 7:Col+Cont
+     axis =    rz           # axis of output
+     file = deposit_r_all.out  # file name of output for the above axis
+     part =  all        electron   photon     neutron  
+# kf/name :  0          11         22         2112     
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat 5:bmp style
+    resol =    1            # (D=1) resolution of gshow or rshow
+    width = 0.5000000       # (D=0.5) width of lines for gshow or rshow
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :         231 (  0)           0 (  0)         231 (  0)
+
+[ T-Track ]
+    title = [t-track] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -1.000000      # minimum value of x-mesh points
+     xmax =   1.000000      # maximum value of x-mesh points
+#    xdel =   2.000000      # mesh width of x-mesh points
+       nx =      1          # number of x-mesh points
+#    data = ( x(i), i = 1, nx + 1 )
+#          -1.00000E+00  1.00000E+00
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -15.00000      # minimum value of y-mesh points
+     ymax =   15.00000      # maximum value of y-mesh points
+#    ydel =  0.6000000      # mesh width of y-mesh points
+       ny =     50          # number of y-mesh points
+#    data = ( y(i), i = 1, ny + 1 )
+#          -1.50000E+01 -1.44000E+01 -1.38000E+01 -1.32000E+01 -1.26000E+01
+#          -1.20000E+01 -1.14000E+01 -1.08000E+01 -1.02000E+01 -9.60000E+00
+#          -9.00000E+00 -8.40000E+00 -7.80000E+00 -7.20000E+00 -6.60000E+00
+#          -6.00000E+00 -5.40000E+00 -4.80000E+00 -4.20000E+00 -3.60000E+00
+#          -3.00000E+00 -2.40000E+00 -1.80000E+00 -1.20000E+00 -6.00000E-01
+#           0.00000E+00  6.00000E-01  1.20000E+00  1.80000E+00  2.40000E+00
+#           3.00000E+00  3.60000E+00  4.20000E+00  4.80000E+00  5.40000E+00
+#           6.00000E+00  6.60000E+00  7.20000E+00  7.80000E+00  8.40000E+00
+#           9.00000E+00  9.60000E+00  1.02000E+01  1.08000E+01  1.14000E+01
+#           1.20000E+01  1.26000E+01  1.32000E+01  1.38000E+01  1.44000E+01
+#           1.50000E+01
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+     zmin =  -15.00000      # minimum value of z-mesh points
+     zmax =   35.00000      # maximum value of z-mesh points
+#    zdel =  0.2222222      # mesh width of z-mesh points
+       nz =    225          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+#          -1.50000E+01 -1.47778E+01 -1.45556E+01 -1.43333E+01 -1.41111E+01
+#          -1.38889E+01 -1.36667E+01 -1.34444E+01 -1.32222E+01 -1.30000E+01
+#          -1.27778E+01 -1.25556E+01 -1.23333E+01 -1.21111E+01 -1.18889E+01
+#          -1.16667E+01 -1.14444E+01 -1.12222E+01 -1.10000E+01 -1.07778E+01
+#          -1.05556E+01 -1.03333E+01 -1.01111E+01 -9.88889E+00 -9.66667E+00
+#          -9.44444E+00 -9.22222E+00 -9.00000E+00 -8.77778E+00 -8.55556E+00
+#          -8.33333E+00 -8.11111E+00 -7.88889E+00 -7.66667E+00 -7.44444E+00
+#          -7.22222E+00 -7.00000E+00 -6.77778E+00 -6.55556E+00 -6.33333E+00
+#          -6.11111E+00 -5.88889E+00 -5.66667E+00 -5.44444E+00 -5.22222E+00
+#          -5.00000E+00 -4.77778E+00 -4.55556E+00 -4.33333E+00 -4.11111E+00
+#          -3.88889E+00 -3.66667E+00 -3.44444E+00 -3.22222E+00 -3.00000E+00
+#          -2.77778E+00 -2.55556E+00 -2.33333E+00 -2.11111E+00 -1.88889E+00
+#          -1.66667E+00 -1.44444E+00 -1.22222E+00 -1.00000E+00 -7.77778E-01
+#          -5.55556E-01 -3.33333E-01 -1.11111E-01  1.11111E-01  3.33333E-01
+#           5.55556E-01  7.77778E-01  1.00000E+00  1.22222E+00  1.44444E+00
+#           1.66667E+00  1.88889E+00  2.11111E+00  2.33333E+00  2.55556E+00
+#           2.77778E+00  3.00000E+00  3.22222E+00  3.44444E+00  3.66667E+00
+#           3.88889E+00  4.11111E+00  4.33333E+00  4.55556E+00  4.77778E+00
+#           5.00000E+00  5.22222E+00  5.44444E+00  5.66667E+00  5.88889E+00
+#           6.11111E+00  6.33333E+00  6.55556E+00  6.77778E+00  7.00000E+00
+#           7.22222E+00  7.44444E+00  7.66667E+00  7.88889E+00  8.11111E+00
+#           8.33333E+00  8.55556E+00  8.77778E+00  9.00000E+00  9.22222E+00
+#           9.44444E+00  9.66667E+00  9.88889E+00  1.01111E+01  1.03333E+01
+#           1.05556E+01  1.07778E+01  1.10000E+01  1.12222E+01  1.14444E+01
+#           1.16667E+01  1.18889E+01  1.21111E+01  1.23333E+01  1.25556E+01
+#           1.27778E+01  1.30000E+01  1.32222E+01  1.34444E+01  1.36667E+01
+#           1.38889E+01  1.41111E+01  1.43333E+01  1.45556E+01  1.47778E+01
+#           1.50000E+01  1.52222E+01  1.54444E+01  1.56667E+01  1.58889E+01
+#           1.61111E+01  1.63333E+01  1.65556E+01  1.67778E+01  1.70000E+01
+#           1.72222E+01  1.74444E+01  1.76667E+01  1.78889E+01  1.81111E+01
+#           1.83333E+01  1.85556E+01  1.87778E+01  1.90000E+01  1.92222E+01
+#           1.94444E+01  1.96667E+01  1.98889E+01  2.01111E+01  2.03333E+01
+#           2.05556E+01  2.07778E+01  2.10000E+01  2.12222E+01  2.14444E+01
+#           2.16667E+01  2.18889E+01  2.21111E+01  2.23333E+01  2.25556E+01
+#           2.27778E+01  2.30000E+01  2.32222E+01  2.34444E+01  2.36667E+01
+#           2.38889E+01  2.41111E+01  2.43333E+01  2.45556E+01  2.47778E+01
+#           2.50000E+01  2.52222E+01  2.54444E+01  2.56667E+01  2.58889E+01
+#           2.61111E+01  2.63333E+01  2.65556E+01  2.67778E+01  2.70000E+01
+#           2.72222E+01  2.74444E+01  2.76667E+01  2.78889E+01  2.81111E+01
+#           2.83333E+01  2.85556E+01  2.87778E+01  2.90000E+01  2.92222E+01
+#           2.94444E+01  2.96667E+01  2.98889E+01  3.01111E+01  3.03333E+01
+#           3.05556E+01  3.07778E+01  3.10000E+01  3.12222E+01  3.14444E+01
+#           3.16667E+01  3.18889E+01  3.21111E+01  3.23333E+01  3.25556E+01
+#           3.27778E+01  3.30000E+01  3.32222E+01  3.34444E+01  3.36667E+01
+#           3.38889E+01  3.41111E+01  3.43333E+01  3.45556E+01  3.47778E+01
+#           3.50000E+01
+   e-type =    1            # e-mesh is given by the below data
+       ne =      3          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+            0.00000E+00  5.00000E-07  1.00000E-02  2.00000E+01
+     unit =    1            # unit is [1/cm^2/source]
+ material =  all            # (D=all) number of specific material
+  2D-type =    3            # 1:Cont, 2:Clust, 3:Color, 4:xyz, 5:mat, 6:Clust+Cont, 7:Col+Cont
+     axis =      yz            # axis of output
+     file = track_yz_nutron.dat  # file name of output for the above axis
+     part =  neutron  
+# kf/name :  2112     
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat 5:bmp style
+    resol =    1            # (D=1) resolution of gshow or rshow
+    width = 0.5000000       # (D=0.5) width of lines for gshow or rshow
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :         287 (  0)           0 (  0)         287 (  0)
+
+[ T-Track ]
+    title = [t-track] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -1.000000      # minimum value of x-mesh points
+     xmax =   1.000000      # maximum value of x-mesh points
+#    xdel =   2.000000      # mesh width of x-mesh points
+       nx =      1          # number of x-mesh points
+#    data = ( x(i), i = 1, nx + 1 )
+#          -1.00000E+00  1.00000E+00
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -1.000000      # minimum value of y-mesh points
+     ymax =   1.000000      # maximum value of y-mesh points
+#    ydel =   2.000000      # mesh width of y-mesh points
+       ny =      1          # number of y-mesh points
+#    data = ( y(i), i = 1, ny + 1 )
+#          -1.00000E+00  1.00000E+00
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+     zmin =  -12.00000      # minimum value of z-mesh points
+     zmax =   35.00000      # maximum value of z-mesh points
+#    zdel =  0.1270270      # mesh width of z-mesh points
+       nz =    370          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+#          -1.20000E+01 -1.18730E+01 -1.17459E+01 -1.16189E+01 -1.14919E+01
+#          -1.13649E+01 -1.12378E+01 -1.11108E+01 -1.09838E+01 -1.08568E+01
+#          -1.07297E+01 -1.06027E+01 -1.04757E+01 -1.03486E+01 -1.02216E+01
+#          -1.00946E+01 -9.96757E+00 -9.84054E+00 -9.71351E+00 -9.58649E+00
+#          -9.45946E+00 -9.33243E+00 -9.20541E+00 -9.07838E+00 -8.95135E+00
+#          -8.82432E+00 -8.69730E+00 -8.57027E+00 -8.44324E+00 -8.31622E+00
+#          -8.18919E+00 -8.06216E+00 -7.93514E+00 -7.80811E+00 -7.68108E+00
+#          -7.55405E+00 -7.42703E+00 -7.30000E+00 -7.17297E+00 -7.04595E+00
+#          -6.91892E+00 -6.79189E+00 -6.66486E+00 -6.53784E+00 -6.41081E+00
+#          -6.28378E+00 -6.15676E+00 -6.02973E+00 -5.90270E+00 -5.77568E+00
+#          -5.64865E+00 -5.52162E+00 -5.39459E+00 -5.26757E+00 -5.14054E+00
+#          -5.01351E+00 -4.88649E+00 -4.75946E+00 -4.63243E+00 -4.50541E+00
+#          -4.37838E+00 -4.25135E+00 -4.12432E+00 -3.99730E+00 -3.87027E+00
+#          -3.74324E+00 -3.61622E+00 -3.48919E+00 -3.36216E+00 -3.23514E+00
+#          -3.10811E+00 -2.98108E+00 -2.85405E+00 -2.72703E+00 -2.60000E+00
+#          -2.47297E+00 -2.34595E+00 -2.21892E+00 -2.09189E+00 -1.96486E+00
+#          -1.83784E+00 -1.71081E+00 -1.58378E+00 -1.45676E+00 -1.32973E+00
+#          -1.20270E+00 -1.07568E+00 -9.48649E-01 -8.21622E-01 -6.94595E-01
+#          -5.67568E-01 -4.40541E-01 -3.13514E-01 -1.86486E-01 -5.94595E-02
+#           6.75676E-02  1.94595E-01  3.21622E-01  4.48649E-01  5.75676E-01
+#           7.02703E-01  8.29730E-01  9.56757E-01  1.08378E+00  1.21081E+00
+#           1.33784E+00  1.46486E+00  1.59189E+00  1.71892E+00  1.84595E+00
+#           1.97297E+00  2.10000E+00  2.22703E+00  2.35405E+00  2.48108E+00
+#           2.60811E+00  2.73514E+00  2.86216E+00  2.98919E+00  3.11622E+00
+#           3.24324E+00  3.37027E+00  3.49730E+00  3.62432E+00  3.75135E+00
+#           3.87838E+00  4.00541E+00  4.13243E+00  4.25946E+00  4.38649E+00
+#           4.51351E+00  4.64054E+00  4.76757E+00  4.89459E+00  5.02162E+00
+#           5.14865E+00  5.27568E+00  5.40270E+00  5.52973E+00  5.65676E+00
+#           5.78378E+00  5.91081E+00  6.03784E+00  6.16486E+00  6.29189E+00
+#           6.41892E+00  6.54595E+00  6.67297E+00  6.80000E+00  6.92703E+00
+#           7.05405E+00  7.18108E+00  7.30811E+00  7.43514E+00  7.56216E+00
+#           7.68919E+00  7.81622E+00  7.94324E+00  8.07027E+00  8.19730E+00
+#           8.32432E+00  8.45135E+00  8.57838E+00  8.70541E+00  8.83243E+00
+#           8.95946E+00  9.08649E+00  9.21351E+00  9.34054E+00  9.46757E+00
+#           9.59459E+00  9.72162E+00  9.84865E+00  9.97568E+00  1.01027E+01
+#           1.02297E+01  1.03568E+01  1.04838E+01  1.06108E+01  1.07378E+01
+#           1.08649E+01  1.09919E+01  1.11189E+01  1.12459E+01  1.13730E+01
+#           1.15000E+01  1.16270E+01  1.17541E+01  1.18811E+01  1.20081E+01
+#           1.21351E+01  1.22622E+01  1.23892E+01  1.25162E+01  1.26432E+01
+#           1.27703E+01  1.28973E+01  1.30243E+01  1.31514E+01  1.32784E+01
+#           1.34054E+01  1.35324E+01  1.36595E+01  1.37865E+01  1.39135E+01
+#           1.40405E+01  1.41676E+01  1.42946E+01  1.44216E+01  1.45486E+01
+#           1.46757E+01  1.48027E+01  1.49297E+01  1.50568E+01  1.51838E+01
+#           1.53108E+01  1.54378E+01  1.55649E+01  1.56919E+01  1.58189E+01
+#           1.59459E+01  1.60730E+01  1.62000E+01  1.63270E+01  1.64541E+01
+#           1.65811E+01  1.67081E+01  1.68351E+01  1.69622E+01  1.70892E+01
+#           1.72162E+01  1.73432E+01  1.74703E+01  1.75973E+01  1.77243E+01
+#           1.78514E+01  1.79784E+01  1.81054E+01  1.82324E+01  1.83595E+01
+#           1.84865E+01  1.86135E+01  1.87405E+01  1.88676E+01  1.89946E+01
+#           1.91216E+01  1.92486E+01  1.93757E+01  1.95027E+01  1.96297E+01
+#           1.97568E+01  1.98838E+01  2.00108E+01  2.01378E+01  2.02649E+01
+#           2.03919E+01  2.05189E+01  2.06459E+01  2.07730E+01  2.09000E+01
+#           2.10270E+01  2.11541E+01  2.12811E+01  2.14081E+01  2.15351E+01
+#           2.16622E+01  2.17892E+01  2.19162E+01  2.20432E+01  2.21703E+01
+#           2.22973E+01  2.24243E+01  2.25514E+01  2.26784E+01  2.28054E+01
+#           2.29324E+01  2.30595E+01  2.31865E+01  2.33135E+01  2.34405E+01
+#           2.35676E+01  2.36946E+01  2.38216E+01  2.39486E+01  2.40757E+01
+#           2.42027E+01  2.43297E+01  2.44568E+01  2.45838E+01  2.47108E+01
+#           2.48378E+01  2.49649E+01  2.50919E+01  2.52189E+01  2.53459E+01
+#           2.54730E+01  2.56000E+01  2.57270E+01  2.58541E+01  2.59811E+01
+#           2.61081E+01  2.62351E+01  2.63622E+01  2.64892E+01  2.66162E+01
+#           2.67432E+01  2.68703E+01  2.69973E+01  2.71243E+01  2.72514E+01
+#           2.73784E+01  2.75054E+01  2.76324E+01  2.77595E+01  2.78865E+01
+#           2.80135E+01  2.81405E+01  2.82676E+01  2.83946E+01  2.85216E+01
+#           2.86486E+01  2.87757E+01  2.89027E+01  2.90297E+01  2.91568E+01
+#           2.92838E+01  2.94108E+01  2.95378E+01  2.96649E+01  2.97919E+01
+#           2.99189E+01  3.00459E+01  3.01730E+01  3.03000E+01  3.04270E+01
+#           3.05541E+01  3.06811E+01  3.08081E+01  3.09351E+01  3.10622E+01
+#           3.11892E+01  3.13162E+01  3.14432E+01  3.15703E+01  3.16973E+01
+#           3.18243E+01  3.19514E+01  3.20784E+01  3.22054E+01  3.23324E+01
+#           3.24595E+01  3.25865E+01  3.27135E+01  3.28405E+01  3.29676E+01
+#           3.30946E+01  3.32216E+01  3.33486E+01  3.34757E+01  3.36027E+01
+#           3.37297E+01  3.38568E+01  3.39838E+01  3.41108E+01  3.42378E+01
+#           3.43649E+01  3.44919E+01  3.46189E+01  3.47459E+01  3.48730E+01
+#           3.50000E+01
+   e-type =    1            # e-mesh is given by the below data
+       ne =      3          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+            0.00000E+00  5.00000E-07  1.00000E-02  2.00000E+01
+     unit =    1            # unit is [1/cm^2/source]
+ material =  all            # (D=all) number of specific material
+     axis =       z            # axis of output
+     file = track_pdd_nutron.dat  # file name of output for the above axis
+     part =  neutron  
+# kf/name :  2112     
+    angel = ylin
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :         383 (  0)           0 (  0)         383 (  0)
+
+[ T-Cross ]
+    title = [t-cross] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -2.000000      # minimum value of x-mesh points
+     xmax =   2.000000      # maximum value of x-mesh points
+#    xdel =   4.000000      # mesh width of x-mesh points
+       nx =      1          # number of x-mesh points
+#    data = ( x(i), i = 1, nx + 1 )
+#          -2.00000E+00  2.00000E+00
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -2.000000      # minimum value of y-mesh points
+     ymax =   2.000000      # maximum value of y-mesh points
+#    ydel =   4.000000      # mesh width of y-mesh points
+       ny =      1          # number of y-mesh points
+#    data = ( y(i), i = 1, ny + 1 )
+#          -2.00000E+00  2.00000E+00
+   z-type =    1            # z-mesh is given by the below data
+       nz =      5          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+           -1.09000E+01  0.00000E+00  1.00000E+00  2.00000E+00  5.00000E+00
+            1.00000E+01
+   e-type =    1            # e-mesh is given by the below data
+       ne =      3          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+            0.00000E+00  5.00000E-07  1.00000E-02  2.00000E+01
+     unit =    1            # unit is [1/cm^2/source]
+     axis =    z            # axis of output
+     file = Points_InOut_Hydrogel_Nutron.dat  # file name of output for the above axis
+   output = flux            # surface crossing flux
+     part =  neutron  
+# kf/name :  2112     
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :          18 (  0)           0 (  0)          18 (  0)
+
+[ T-Track ]
+    title = [t-track] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -1.000000      # minimum value of x-mesh points
+     xmax =   1.000000      # maximum value of x-mesh points
+#    xdel =   2.000000      # mesh width of x-mesh points
+       nx =      1          # number of x-mesh points
+#    data = ( x(i), i = 1, nx + 1 )
+#          -1.00000E+00  1.00000E+00
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -15.00000      # minimum value of y-mesh points
+     ymax =   15.00000      # maximum value of y-mesh points
+#    ydel =  0.6000000      # mesh width of y-mesh points
+       ny =     50          # number of y-mesh points
+#    data = ( y(i), i = 1, ny + 1 )
+#          -1.50000E+01 -1.44000E+01 -1.38000E+01 -1.32000E+01 -1.26000E+01
+#          -1.20000E+01 -1.14000E+01 -1.08000E+01 -1.02000E+01 -9.60000E+00
+#          -9.00000E+00 -8.40000E+00 -7.80000E+00 -7.20000E+00 -6.60000E+00
+#          -6.00000E+00 -5.40000E+00 -4.80000E+00 -4.20000E+00 -3.60000E+00
+#          -3.00000E+00 -2.40000E+00 -1.80000E+00 -1.20000E+00 -6.00000E-01
+#           0.00000E+00  6.00000E-01  1.20000E+00  1.80000E+00  2.40000E+00
+#           3.00000E+00  3.60000E+00  4.20000E+00  4.80000E+00  5.40000E+00
+#           6.00000E+00  6.60000E+00  7.20000E+00  7.80000E+00  8.40000E+00
+#           9.00000E+00  9.60000E+00  1.02000E+01  1.08000E+01  1.14000E+01
+#           1.20000E+01  1.26000E+01  1.32000E+01  1.38000E+01  1.44000E+01
+#           1.50000E+01
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+     zmin =  -15.00000      # minimum value of z-mesh points
+     zmax =   35.00000      # maximum value of z-mesh points
+#    zdel =  0.2222222      # mesh width of z-mesh points
+       nz =    225          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+#          -1.50000E+01 -1.47778E+01 -1.45556E+01 -1.43333E+01 -1.41111E+01
+#          -1.38889E+01 -1.36667E+01 -1.34444E+01 -1.32222E+01 -1.30000E+01
+#          -1.27778E+01 -1.25556E+01 -1.23333E+01 -1.21111E+01 -1.18889E+01
+#          -1.16667E+01 -1.14444E+01 -1.12222E+01 -1.10000E+01 -1.07778E+01
+#          -1.05556E+01 -1.03333E+01 -1.01111E+01 -9.88889E+00 -9.66667E+00
+#          -9.44444E+00 -9.22222E+00 -9.00000E+00 -8.77778E+00 -8.55556E+00
+#          -8.33333E+00 -8.11111E+00 -7.88889E+00 -7.66667E+00 -7.44444E+00
+#          -7.22222E+00 -7.00000E+00 -6.77778E+00 -6.55556E+00 -6.33333E+00
+#          -6.11111E+00 -5.88889E+00 -5.66667E+00 -5.44444E+00 -5.22222E+00
+#          -5.00000E+00 -4.77778E+00 -4.55556E+00 -4.33333E+00 -4.11111E+00
+#          -3.88889E+00 -3.66667E+00 -3.44444E+00 -3.22222E+00 -3.00000E+00
+#          -2.77778E+00 -2.55556E+00 -2.33333E+00 -2.11111E+00 -1.88889E+00
+#          -1.66667E+00 -1.44444E+00 -1.22222E+00 -1.00000E+00 -7.77778E-01
+#          -5.55556E-01 -3.33333E-01 -1.11111E-01  1.11111E-01  3.33333E-01
+#           5.55556E-01  7.77778E-01  1.00000E+00  1.22222E+00  1.44444E+00
+#           1.66667E+00  1.88889E+00  2.11111E+00  2.33333E+00  2.55556E+00
+#           2.77778E+00  3.00000E+00  3.22222E+00  3.44444E+00  3.66667E+00
+#           3.88889E+00  4.11111E+00  4.33333E+00  4.55556E+00  4.77778E+00
+#           5.00000E+00  5.22222E+00  5.44444E+00  5.66667E+00  5.88889E+00
+#           6.11111E+00  6.33333E+00  6.55556E+00  6.77778E+00  7.00000E+00
+#           7.22222E+00  7.44444E+00  7.66667E+00  7.88889E+00  8.11111E+00
+#           8.33333E+00  8.55556E+00  8.77778E+00  9.00000E+00  9.22222E+00
+#           9.44444E+00  9.66667E+00  9.88889E+00  1.01111E+01  1.03333E+01
+#           1.05556E+01  1.07778E+01  1.10000E+01  1.12222E+01  1.14444E+01
+#           1.16667E+01  1.18889E+01  1.21111E+01  1.23333E+01  1.25556E+01
+#           1.27778E+01  1.30000E+01  1.32222E+01  1.34444E+01  1.36667E+01
+#           1.38889E+01  1.41111E+01  1.43333E+01  1.45556E+01  1.47778E+01
+#           1.50000E+01  1.52222E+01  1.54444E+01  1.56667E+01  1.58889E+01
+#           1.61111E+01  1.63333E+01  1.65556E+01  1.67778E+01  1.70000E+01
+#           1.72222E+01  1.74444E+01  1.76667E+01  1.78889E+01  1.81111E+01
+#           1.83333E+01  1.85556E+01  1.87778E+01  1.90000E+01  1.92222E+01
+#           1.94444E+01  1.96667E+01  1.98889E+01  2.01111E+01  2.03333E+01
+#           2.05556E+01  2.07778E+01  2.10000E+01  2.12222E+01  2.14444E+01
+#           2.16667E+01  2.18889E+01  2.21111E+01  2.23333E+01  2.25556E+01
+#           2.27778E+01  2.30000E+01  2.32222E+01  2.34444E+01  2.36667E+01
+#           2.38889E+01  2.41111E+01  2.43333E+01  2.45556E+01  2.47778E+01
+#           2.50000E+01  2.52222E+01  2.54444E+01  2.56667E+01  2.58889E+01
+#           2.61111E+01  2.63333E+01  2.65556E+01  2.67778E+01  2.70000E+01
+#           2.72222E+01  2.74444E+01  2.76667E+01  2.78889E+01  2.81111E+01
+#           2.83333E+01  2.85556E+01  2.87778E+01  2.90000E+01  2.92222E+01
+#           2.94444E+01  2.96667E+01  2.98889E+01  3.01111E+01  3.03333E+01
+#           3.05556E+01  3.07778E+01  3.10000E+01  3.12222E+01  3.14444E+01
+#           3.16667E+01  3.18889E+01  3.21111E+01  3.23333E+01  3.25556E+01
+#           3.27778E+01  3.30000E+01  3.32222E+01  3.34444E+01  3.36667E+01
+#           3.38889E+01  3.41111E+01  3.43333E+01  3.45556E+01  3.47778E+01
+#           3.50000E+01
+   e-type =    1            # e-mesh is given by the below data
+       ne =      1          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+            1.00000E-03  2.00000E+01
+     unit =    1            # unit is [1/cm^2/source]
+ material =  all            # (D=all) number of specific material
+  2D-type =    3            # 1:Cont, 2:Clust, 3:Color, 4:xyz, 5:mat, 6:Clust+Cont, 7:Col+Cont
+     axis =      yz            # axis of output
+     file = track_yz_photon.dat  # file name of output for the above axis
+     part =  photon   
+# kf/name :  22       
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat 5:bmp style
+    resol =    1            # (D=1) resolution of gshow or rshow
+    width = 0.5000000       # (D=0.5) width of lines for gshow or rshow
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :         285 (  0)           0 (  0)         285 (  0)
+
+[ T-Track ]
+    title = [t-track] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -1.000000      # minimum value of x-mesh points
+     xmax =   1.000000      # maximum value of x-mesh points
+#    xdel =   2.000000      # mesh width of x-mesh points
+       nx =      1          # number of x-mesh points
+#    data = ( x(i), i = 1, nx + 1 )
+#          -1.00000E+00  1.00000E+00
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -1.000000      # minimum value of y-mesh points
+     ymax =   1.000000      # maximum value of y-mesh points
+#    ydel =   2.000000      # mesh width of y-mesh points
+       ny =      1          # number of y-mesh points
+#    data = ( y(i), i = 1, ny + 1 )
+#          -1.00000E+00  1.00000E+00
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+     zmin =  -12.00000      # minimum value of z-mesh points
+     zmax =   35.00000      # maximum value of z-mesh points
+#    zdel =  0.1270270      # mesh width of z-mesh points
+       nz =    370          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+#          -1.20000E+01 -1.18730E+01 -1.17459E+01 -1.16189E+01 -1.14919E+01
+#          -1.13649E+01 -1.12378E+01 -1.11108E+01 -1.09838E+01 -1.08568E+01
+#          -1.07297E+01 -1.06027E+01 -1.04757E+01 -1.03486E+01 -1.02216E+01
+#          -1.00946E+01 -9.96757E+00 -9.84054E+00 -9.71351E+00 -9.58649E+00
+#          -9.45946E+00 -9.33243E+00 -9.20541E+00 -9.07838E+00 -8.95135E+00
+#          -8.82432E+00 -8.69730E+00 -8.57027E+00 -8.44324E+00 -8.31622E+00
+#          -8.18919E+00 -8.06216E+00 -7.93514E+00 -7.80811E+00 -7.68108E+00
+#          -7.55405E+00 -7.42703E+00 -7.30000E+00 -7.17297E+00 -7.04595E+00
+#          -6.91892E+00 -6.79189E+00 -6.66486E+00 -6.53784E+00 -6.41081E+00
+#          -6.28378E+00 -6.15676E+00 -6.02973E+00 -5.90270E+00 -5.77568E+00
+#          -5.64865E+00 -5.52162E+00 -5.39459E+00 -5.26757E+00 -5.14054E+00
+#          -5.01351E+00 -4.88649E+00 -4.75946E+00 -4.63243E+00 -4.50541E+00
+#          -4.37838E+00 -4.25135E+00 -4.12432E+00 -3.99730E+00 -3.87027E+00
+#          -3.74324E+00 -3.61622E+00 -3.48919E+00 -3.36216E+00 -3.23514E+00
+#          -3.10811E+00 -2.98108E+00 -2.85405E+00 -2.72703E+00 -2.60000E+00
+#          -2.47297E+00 -2.34595E+00 -2.21892E+00 -2.09189E+00 -1.96486E+00
+#          -1.83784E+00 -1.71081E+00 -1.58378E+00 -1.45676E+00 -1.32973E+00
+#          -1.20270E+00 -1.07568E+00 -9.48649E-01 -8.21622E-01 -6.94595E-01
+#          -5.67568E-01 -4.40541E-01 -3.13514E-01 -1.86486E-01 -5.94595E-02
+#           6.75676E-02  1.94595E-01  3.21622E-01  4.48649E-01  5.75676E-01
+#           7.02703E-01  8.29730E-01  9.56757E-01  1.08378E+00  1.21081E+00
+#           1.33784E+00  1.46486E+00  1.59189E+00  1.71892E+00  1.84595E+00
+#           1.97297E+00  2.10000E+00  2.22703E+00  2.35405E+00  2.48108E+00
+#           2.60811E+00  2.73514E+00  2.86216E+00  2.98919E+00  3.11622E+00
+#           3.24324E+00  3.37027E+00  3.49730E+00  3.62432E+00  3.75135E+00
+#           3.87838E+00  4.00541E+00  4.13243E+00  4.25946E+00  4.38649E+00
+#           4.51351E+00  4.64054E+00  4.76757E+00  4.89459E+00  5.02162E+00
+#           5.14865E+00  5.27568E+00  5.40270E+00  5.52973E+00  5.65676E+00
+#           5.78378E+00  5.91081E+00  6.03784E+00  6.16486E+00  6.29189E+00
+#           6.41892E+00  6.54595E+00  6.67297E+00  6.80000E+00  6.92703E+00
+#           7.05405E+00  7.18108E+00  7.30811E+00  7.43514E+00  7.56216E+00
+#           7.68919E+00  7.81622E+00  7.94324E+00  8.07027E+00  8.19730E+00
+#           8.32432E+00  8.45135E+00  8.57838E+00  8.70541E+00  8.83243E+00
+#           8.95946E+00  9.08649E+00  9.21351E+00  9.34054E+00  9.46757E+00
+#           9.59459E+00  9.72162E+00  9.84865E+00  9.97568E+00  1.01027E+01
+#           1.02297E+01  1.03568E+01  1.04838E+01  1.06108E+01  1.07378E+01
+#           1.08649E+01  1.09919E+01  1.11189E+01  1.12459E+01  1.13730E+01
+#           1.15000E+01  1.16270E+01  1.17541E+01  1.18811E+01  1.20081E+01
+#           1.21351E+01  1.22622E+01  1.23892E+01  1.25162E+01  1.26432E+01
+#           1.27703E+01  1.28973E+01  1.30243E+01  1.31514E+01  1.32784E+01
+#           1.34054E+01  1.35324E+01  1.36595E+01  1.37865E+01  1.39135E+01
+#           1.40405E+01  1.41676E+01  1.42946E+01  1.44216E+01  1.45486E+01
+#           1.46757E+01  1.48027E+01  1.49297E+01  1.50568E+01  1.51838E+01
+#           1.53108E+01  1.54378E+01  1.55649E+01  1.56919E+01  1.58189E+01
+#           1.59459E+01  1.60730E+01  1.62000E+01  1.63270E+01  1.64541E+01
+#           1.65811E+01  1.67081E+01  1.68351E+01  1.69622E+01  1.70892E+01
+#           1.72162E+01  1.73432E+01  1.74703E+01  1.75973E+01  1.77243E+01
+#           1.78514E+01  1.79784E+01  1.81054E+01  1.82324E+01  1.83595E+01
+#           1.84865E+01  1.86135E+01  1.87405E+01  1.88676E+01  1.89946E+01
+#           1.91216E+01  1.92486E+01  1.93757E+01  1.95027E+01  1.96297E+01
+#           1.97568E+01  1.98838E+01  2.00108E+01  2.01378E+01  2.02649E+01
+#           2.03919E+01  2.05189E+01  2.06459E+01  2.07730E+01  2.09000E+01
+#           2.10270E+01  2.11541E+01  2.12811E+01  2.14081E+01  2.15351E+01
+#           2.16622E+01  2.17892E+01  2.19162E+01  2.20432E+01  2.21703E+01
+#           2.22973E+01  2.24243E+01  2.25514E+01  2.26784E+01  2.28054E+01
+#           2.29324E+01  2.30595E+01  2.31865E+01  2.33135E+01  2.34405E+01
+#           2.35676E+01  2.36946E+01  2.38216E+01  2.39486E+01  2.40757E+01
+#           2.42027E+01  2.43297E+01  2.44568E+01  2.45838E+01  2.47108E+01
+#           2.48378E+01  2.49649E+01  2.50919E+01  2.52189E+01  2.53459E+01
+#           2.54730E+01  2.56000E+01  2.57270E+01  2.58541E+01  2.59811E+01
+#           2.61081E+01  2.62351E+01  2.63622E+01  2.64892E+01  2.66162E+01
+#           2.67432E+01  2.68703E+01  2.69973E+01  2.71243E+01  2.72514E+01
+#           2.73784E+01  2.75054E+01  2.76324E+01  2.77595E+01  2.78865E+01
+#           2.80135E+01  2.81405E+01  2.82676E+01  2.83946E+01  2.85216E+01
+#           2.86486E+01  2.87757E+01  2.89027E+01  2.90297E+01  2.91568E+01
+#           2.92838E+01  2.94108E+01  2.95378E+01  2.96649E+01  2.97919E+01
+#           2.99189E+01  3.00459E+01  3.01730E+01  3.03000E+01  3.04270E+01
+#           3.05541E+01  3.06811E+01  3.08081E+01  3.09351E+01  3.10622E+01
+#           3.11892E+01  3.13162E+01  3.14432E+01  3.15703E+01  3.16973E+01
+#           3.18243E+01  3.19514E+01  3.20784E+01  3.22054E+01  3.23324E+01
+#           3.24595E+01  3.25865E+01  3.27135E+01  3.28405E+01  3.29676E+01
+#           3.30946E+01  3.32216E+01  3.33486E+01  3.34757E+01  3.36027E+01
+#           3.37297E+01  3.38568E+01  3.39838E+01  3.41108E+01  3.42378E+01
+#           3.43649E+01  3.44919E+01  3.46189E+01  3.47459E+01  3.48730E+01
+#           3.50000E+01
+   e-type =    1            # e-mesh is given by the below data
+       ne =      1          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+            1.00000E-03  2.00000E+01
+     unit =    1            # unit is [1/cm^2/source]
+ material =  all            # (D=all) number of specific material
+     axis =       z            # axis of output
+     file = track_pdd_photon.dat  # file name of output for the above axis
+     part =  photon   
+# kf/name :  22       
+    angel = ylin
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :         381 (  0)           0 (  0)         381 (  0)
+
+[ T-Cross ]
+    title = [t-cross] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -2.000000      # minimum value of x-mesh points
+     xmax =   2.000000      # maximum value of x-mesh points
+#    xdel =   4.000000      # mesh width of x-mesh points
+       nx =      1          # number of x-mesh points
+#    data = ( x(i), i = 1, nx + 1 )
+#          -2.00000E+00  2.00000E+00
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -2.000000      # minimum value of y-mesh points
+     ymax =   2.000000      # maximum value of y-mesh points
+#    ydel =   4.000000      # mesh width of y-mesh points
+       ny =      1          # number of y-mesh points
+#    data = ( y(i), i = 1, ny + 1 )
+#          -2.00000E+00  2.00000E+00
+   z-type =    1            # z-mesh is given by the below data
+       nz =      5          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+           -1.09000E+01  0.00000E+00  1.00000E+00  2.00000E+00  5.00000E+00
+            1.00000E+01
+   e-type =    1            # e-mesh is given by the below data
+       ne =      1          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+            1.00000E-03  2.00000E+01
+     unit =    1            # unit is [1/cm^2/source]
+     axis =    z            # axis of output
+     file = Points_InOut_Hydrogel_Photon.dat  # file name of output for the above axis
+   output = flux            # surface crossing flux
+     part =  photon   
+# kf/name :  22       
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :          16 (  0)           0 (  0)          16 (  0)
+
+[ T-Cross ]
+    title = [t-cross] in r-z mesh
+     mesh =  r-z            # mesh type is r-z scoring mesh
+       x0 =   0.000000      # center x-position of r-z mesh
+       y0 =   0.000000      # center y-position of r-z mesh
+   r-type =    2            # r-mesh is linear given by rmin, rmax and nr
+     rmin =   0.000000      # minimum value of r-mesh points
+     rmax =   30.00000      # maximum value of r-mesh points
+#    rdel =   1.000000      # mesh width of r-mesh points
+       nr =     30          # number of r-mesh points
+#    data = ( r(i), i = 1, nr + 1 )
+#           0.00000E+00  1.00000E+00  2.00000E+00  3.00000E+00  4.00000E+00
+#           5.00000E+00  6.00000E+00  7.00000E+00  8.00000E+00  9.00000E+00
+#           1.00000E+01  1.10000E+01  1.20000E+01  1.30000E+01  1.40000E+01
+#           1.50000E+01  1.60000E+01  1.70000E+01  1.80000E+01  1.90000E+01
+#           2.00000E+01  2.10000E+01  2.20000E+01  2.30000E+01  2.40000E+01
+#           2.50000E+01  2.60000E+01  2.70000E+01  2.80000E+01  2.90000E+01
+#           3.00000E+01
+   z-type =    1            # z-mesh is given by the below data
+       nz =      0          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+           -1.09000E+01
+   e-type =    1            # e-mesh is given by the below data
+       ne =      3          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+            0.00000E+00  5.00000E-07  1.00000E-02  2.00000E+01
+     unit =    1            # unit is [1/cm^2/source]
+     axis =    r            # axis of output
+     file = r_FluxDist_SourcePlane_Neutron.dat  # file name of output for the above axis
+   output = flux            # surface crossing flux
+     part =  neutron  
+# kf/name :  2112     
+    angel = xlin ylin
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :          40 (  0)           0 (  0)          40 (  0)
+
+[ T-Cross ]
+    title = [t-cross] in r-z mesh
+     mesh =  r-z            # mesh type is r-z scoring mesh
+       x0 =   0.000000      # center x-position of r-z mesh
+       y0 =   0.000000      # center y-position of r-z mesh
+   r-type =    2            # r-mesh is linear given by rmin, rmax and nr
+     rmin =   0.000000      # minimum value of r-mesh points
+     rmax =   30.00000      # maximum value of r-mesh points
+#    rdel =   1.000000      # mesh width of r-mesh points
+       nr =     30          # number of r-mesh points
+#    data = ( r(i), i = 1, nr + 1 )
+#           0.00000E+00  1.00000E+00  2.00000E+00  3.00000E+00  4.00000E+00
+#           5.00000E+00  6.00000E+00  7.00000E+00  8.00000E+00  9.00000E+00
+#           1.00000E+01  1.10000E+01  1.20000E+01  1.30000E+01  1.40000E+01
+#           1.50000E+01  1.60000E+01  1.70000E+01  1.80000E+01  1.90000E+01
+#           2.00000E+01  2.10000E+01  2.20000E+01  2.30000E+01  2.40000E+01
+#           2.50000E+01  2.60000E+01  2.70000E+01  2.80000E+01  2.90000E+01
+#           3.00000E+01
+   z-type =    1            # z-mesh is given by the below data
+       nz =      0          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+            0.00000E+00
+   e-type =    1            # e-mesh is given by the below data
+       ne =      3          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+            0.00000E+00  5.00000E-07  1.00000E-02  2.00000E+01
+     unit =    1            # unit is [1/cm^2/source]
+     axis =    r            # axis of output
+     file = r_FluxDist_CollimatorAperture_Neutron.dat  # file name of output for the above axis
+   output = flux            # surface crossing flux
+     part =  neutron  
+# kf/name :  2112     
+    angel = xlin ylin
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :          40 (  0)           0 (  0)          40 (  0)
+
+[END] of Input Echo <<<========================================================
+
+<<< Report of real Geometry memory >>>
+*           GG/CG memory =      258
+*     total memory: mdas = 80000000
+*                percent =     0.00 %
+
+<<< Report of material memory for high energy>>>
+*   high energy material =      563
+*     total memory: mdas = 80000000
+*                percent =     0.00 %
+
+<<< Report of material memory for low energy>>>
+*    low energy material =   814501
+*     total memory: mdas = 80000000
+*                percent =     1.02 %
+
+<<< Report of real tally memory >>>
+*      real tally memory =     3088
+*     total memory: mdas = 80000000
+*                percent =     0.00 %
+
+<<< Report of temporary tally memory >>>
+* temporary tally memory =   820718
+*     total memory: mdas = 80000000
+*                percent =     1.03 %
+
+<<< Report of other memory >>>
+*           other memory =     1546
+*     total memory: mdas = 80000000
+*                percent =     0.00 %
+
+<<< Report of total memory >>>
+*      used total memory =   825719
+*     total memory: mdas = 80000000
+*                percent =     1.03 %
+*                ---------------------
+
+-------------------------------------------------------------------------------
+bat[       1] ncas =        1000000. : rijk    =   8.8265504963752248E+216
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m.  3.06 s.
+
+-------------------------------------------------------------------------------
+bat[       2] ncas =        2000000. : rijk    =  -1.1338727638836461E-181
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.64 s.
+
+-------------------------------------------------------------------------------
+bat[       3] ncas =        3000000. : rijk    =  -9.1920434727941480E+060
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 27.58 s.
+
+-------------------------------------------------------------------------------
+bat[       4] ncas =        4000000. : rijk    =  -2.4500116310993907E-014
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 34.97 s.
+
+-------------------------------------------------------------------------------
+bat[       5] ncas =        5000000. : rijk    =  -7.2100914202919024E+016
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 40.16 s.
+
+-------------------------------------------------------------------------------
+bat[       6] ncas =        6000000. : rijk    =  -9.2701185333678855E+153
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 38.87 s.
+
+-------------------------------------------------------------------------------
+bat[       7] ncas =        7000000. : rijk    =   1.1563221756145395E-153
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 32.29 s.
+
+-------------------------------------------------------------------------------
+bat[       8] ncas =        8000000. : rijk    =  -2.4539447269597833E-262
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 48.26 s.
+
+-------------------------------------------------------------------------------
+bat[       9] ncas =        9000000. : rijk    =  -5.5316831583004278E-092
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   2 m.  5.83 s.
+
+-------------------------------------------------------------------------------
+bat[      10] ncas =       10000000. : rijk    =   1.9145216053477591E-260
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 45.34 s.
+
+-------------------------------------------------------------------------------
+bat[      11] ncas =       11000000. : rijk    =  -2.0225104551960996E+026
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 37.62 s.
+
+-------------------------------------------------------------------------------
+bat[      12] ncas =       12000000. : rijk    =   2.9272621665061719E-009
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 27.79 s.
+
+-------------------------------------------------------------------------------
+bat[      13] ncas =       13000000. : rijk    =  -6.7835086758023157E+081
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.14 s.
+
+-------------------------------------------------------------------------------
+bat[      14] ncas =       14000000. : rijk    =   4.6735825311394012E-309
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 31.69 s.
+
+-------------------------------------------------------------------------------
+bat[      15] ncas =       15000000. : rijk    =  -7.6911724007101497E+168
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 30.43 s.
+
+-------------------------------------------------------------------------------
+bat[      16] ncas =       16000000. : rijk    =   3.7603307732876946E-183
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 31.23 s.
+
+-------------------------------------------------------------------------------
+bat[      17] ncas =       17000000. : rijk    =  -1.4240492764364744E+286
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 31.95 s.
+
+-------------------------------------------------------------------------------
+bat[      18] ncas =       18000000. : rijk    =  -2.4955334932752636E+139
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.55 s.
+
+-------------------------------------------------------------------------------
+bat[      19] ncas =       19000000. : rijk    =   6.6198481034726592E-103
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.06 s.
+
+-------------------------------------------------------------------------------
+bat[      20] ncas =       20000000. : rijk    =   4.9310095381819004E-209
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.88 s.
+
+-------------------------------------------------------------------------------
+bat[      21] ncas =       21000000. : rijk    =   1.8482921851548353E-303
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 33.61 s.
+
+-------------------------------------------------------------------------------
+bat[      22] ncas =       22000000. : rijk    =   1.1204307420984644E+257
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.39 s.
+
+-------------------------------------------------------------------------------
+bat[      23] ncas =       23000000. : rijk    =  -8.9385106292095241E+087
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.89 s.
+
+-------------------------------------------------------------------------------
+bat[      24] ncas =       24000000. : rijk    =  -8.1440592946931322E-064
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 32.94 s.
+
+-------------------------------------------------------------------------------
+bat[      25] ncas =       25000000. : rijk    =   3.3599647353558716E+172
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 33.80 s.
+
+-------------------------------------------------------------------------------
+bat[      26] ncas =       26000000. : rijk    =   2.9217543613883530E-149
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.56 s.
+
+-------------------------------------------------------------------------------
+bat[      27] ncas =       27000000. : rijk    =   1.8219860475696786E-140
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.72 s.
+
+-------------------------------------------------------------------------------
+bat[      28] ncas =       28000000. : rijk    =  -7.7929495095815738E-276
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.65 s.
+
+-------------------------------------------------------------------------------
+bat[      29] ncas =       29000000. : rijk    =  -2.8587956983964687E+105
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.16 s.
+
+-------------------------------------------------------------------------------
+bat[      30] ncas =       30000000. : rijk    =  -1.0006953547911271E-038
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.36 s.
+
+-------------------------------------------------------------------------------
+bat[      31] ncas =       31000000. : rijk    =  -1.0843478510947757E-110
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 27.36 s.
+
+-------------------------------------------------------------------------------
+bat[      32] ncas =       32000000. : rijk    =   1.8385176589173073E+136
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 31.63 s.
+
+-------------------------------------------------------------------------------
+bat[      33] ncas =       33000000. : rijk    =   3.8376760486515502E-079
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   2 m. 43.36 s.
+
+-------------------------------------------------------------------------------
+bat[      34] ncas =       34000000. : rijk    =   3.4101172129230517E+117
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   2 m.  5.84 s.
+
+-------------------------------------------------------------------------------
+bat[      35] ncas =       35000000. : rijk    =  -2.9507288562977468E-089
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.53 s.
+
+-------------------------------------------------------------------------------
+bat[      36] ncas =       36000000. : rijk    =  -4.2356398840927574E-284
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.10 s.
+
+-------------------------------------------------------------------------------
+bat[      37] ncas =       37000000. : rijk    =  -8.1736593337963330E+260
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 32.38 s.
+
+-------------------------------------------------------------------------------
+bat[      38] ncas =       38000000. : rijk    =  -7.3728144566678930E+002
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.55 s.
+
+-------------------------------------------------------------------------------
+bat[      39] ncas =       39000000. : rijk    =  -3.5369010847361741E-308
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.44 s.
+
+-------------------------------------------------------------------------------
+bat[      40] ncas =       40000000. : rijk    =  -2.4991757704013947E-287
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.16 s.
+
+-------------------------------------------------------------------------------
+bat[      41] ncas =       41000000. : rijk    =   3.0771891208749407E+118
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.56 s.
+
+-------------------------------------------------------------------------------
+bat[      42] ncas =       42000000. : rijk    =   1.6707594013982991E+104
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.22 s.
+
+-------------------------------------------------------------------------------
+bat[      43] ncas =       43000000. : rijk    =  -6.3193541944263215E-266
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 29.93 s.
+
+-------------------------------------------------------------------------------
+bat[      44] ncas =       44000000. : rijk    =   3.2651054894709514E-216
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.26 s.
+
+-------------------------------------------------------------------------------
+bat[      45] ncas =       45000000. : rijk    =   1.0805417947421760E-196
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.93 s.
+
+-------------------------------------------------------------------------------
+bat[      46] ncas =       46000000. : rijk    =   1.0851088019449701E-161
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 27.29 s.
+
+-------------------------------------------------------------------------------
+bat[      47] ncas =       47000000. : rijk    =   2.0883326138419728E+078
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.04 s.
+
+-------------------------------------------------------------------------------
+bat[      48] ncas =       48000000. : rijk    =  -1.4800384694608713E+130
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.84 s.
+
+-------------------------------------------------------------------------------
+bat[      49] ncas =       49000000. : rijk    =  -1.7811093600800112E+040
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.71 s.
+
+-------------------------------------------------------------------------------
+bat[      50] ncas =       50000000. : rijk    =  -1.3951335965877570E+056
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.44 s.
+
+-------------------------------------------------------------------------------
+bat[      51] ncas =       51000000. : rijk    =  -3.6843760517702039E-061
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.14 s.
+
+-------------------------------------------------------------------------------
+bat[      52] ncas =       52000000. : rijk    =  -3.9661613475002557E+183
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.53 s.
+
+-------------------------------------------------------------------------------
+bat[      53] ncas =       53000000. : rijk    =  -1.3487400701288905E+278
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 27.27 s.
+
+-------------------------------------------------------------------------------
+bat[      54] ncas =       54000000. : rijk    =   6.3472274104034119E-216
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.21 s.
+
+-------------------------------------------------------------------------------
+bat[      55] ncas =       55000000. : rijk    =  -3.5967556208033628E-108
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.36 s.
+
+-------------------------------------------------------------------------------
+bat[      56] ncas =       56000000. : rijk    =  -4.9608473904755706E+259
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.31 s.
+
+-------------------------------------------------------------------------------
+bat[      57] ncas =       57000000. : rijk    =  -1.4957336923934875E+245
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.04 s.
+
+-------------------------------------------------------------------------------
+bat[      58] ncas =       58000000. : rijk    =  -4.7068104512895526E-129
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.97 s.
+
+-------------------------------------------------------------------------------
+bat[      59] ncas =       59000000. : rijk    =   3.6183940558189281E+084
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 30.65 s.
+
+-------------------------------------------------------------------------------
+bat[      60] ncas =       60000000. : rijk    =   2.0811519585118583E-135
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.29 s.
+
+-------------------------------------------------------------------------------
+bat[      61] ncas =       61000000. : rijk    =  -1.6919934593748021E+063
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.31 s.
+
+-------------------------------------------------------------------------------
+bat[      62] ncas =       62000000. : rijk    =  -1.4136382103063444E-243
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.09 s.
+
+-------------------------------------------------------------------------------
+bat[      63] ncas =       63000000. : rijk    =  -9.4172048250104724E-240
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.46 s.
+
+-------------------------------------------------------------------------------
+bat[      64] ncas =       64000000. : rijk    =   4.1201780088171854E+244
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.14 s.
+
+-------------------------------------------------------------------------------
+bat[      65] ncas =       65000000. : rijk    =   5.2801276304007321E-294
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.14 s.
+
+-------------------------------------------------------------------------------
+bat[      66] ncas =       66000000. : rijk    =   1.0436809763709399E-209
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 33.80 s.
+
+-------------------------------------------------------------------------------
+bat[      67] ncas =       67000000. : rijk    =   3.4190600934277745E-240
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.78 s.
+
+-------------------------------------------------------------------------------
+bat[      68] ncas =       68000000. : rijk    =   9.1624975913091537E-138
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.57 s.
+
+-------------------------------------------------------------------------------
+bat[      69] ncas =       69000000. : rijk    =   3.5796493646870083E-033
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 34.22 s.
+
+-------------------------------------------------------------------------------
+bat[      70] ncas =       70000000. : rijk    =   4.1683241364721983E-299
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 38.02 s.
+
+-------------------------------------------------------------------------------
+bat[      71] ncas =       71000000. : rijk    =   2.6615120031223949E-293
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 33.17 s.
+
+-------------------------------------------------------------------------------
+bat[      72] ncas =       72000000. : rijk    =   8.4542512321071662E-228
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 33.44 s.
+
+-------------------------------------------------------------------------------
+bat[      73] ncas =       73000000. : rijk    =  -3.3555261827867484E+058
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 37.55 s.
+
+-------------------------------------------------------------------------------
+bat[      74] ncas =       74000000. : rijk    =  -8.4856087494088275E+020
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.12 s.
+
+-------------------------------------------------------------------------------
+bat[      75] ncas =       75000000. : rijk    =   1.4997279819333046E+215
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.21 s.
+
+-------------------------------------------------------------------------------
+bat[      76] ncas =       76000000. : rijk    =   4.0507841107439170E-143
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 34.11 s.
+
+-------------------------------------------------------------------------------
+bat[      77] ncas =       77000000. : rijk    =   1.7765750439123488E+097
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.74 s.
+
+-------------------------------------------------------------------------------
+bat[      78] ncas =       78000000. : rijk    =   1.5866815437415366E-236
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.04 s.
+
+-------------------------------------------------------------------------------
+bat[      79] ncas =       79000000. : rijk    =   1.9018190693033567E+053
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 29.55 s.
+
+-------------------------------------------------------------------------------
+bat[      80] ncas =       80000000. : rijk    =  -5.7672777135699605E+194
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 30.43 s.
+
+-------------------------------------------------------------------------------
+bat[      81] ncas =       81000000. : rijk    =  -5.9226698031891488E-114
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   2 m.  5.42 s.
+
+-------------------------------------------------------------------------------
+bat[      82] ncas =       82000000. : rijk    =  -3.1839473645084565E+222
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   2 m.  5.20 s.
+
+-------------------------------------------------------------------------------
+bat[      83] ncas =       83000000. : rijk    =  -8.6984551356055643E+182
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 35.03 s.
+
+-------------------------------------------------------------------------------
+bat[      84] ncas =       84000000. : rijk    =  -9.6119981268218945E+026
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 28.55 s.
+
+-------------------------------------------------------------------------------
+bat[      85] ncas =       85000000. : rijk    =  -5.4689953799041846E+150
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.41 s.
+
+-------------------------------------------------------------------------------
+bat[      86] ncas =       86000000. : rijk    =   1.0873832963117053E-080
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 28.98 s.
+
+-------------------------------------------------------------------------------
+bat[      87] ncas =       87000000. : rijk    =  -2.9110145439227932E+180
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.74 s.
+
+-------------------------------------------------------------------------------
+bat[      88] ncas =       88000000. : rijk    =  -3.4902289481714688E+176
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.97 s.
+
+-------------------------------------------------------------------------------
+bat[      89] ncas =       89000000. : rijk    =  -8.4223307940071564E-241
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 45.13 s.
+
+-------------------------------------------------------------------------------
+bat[      90] ncas =       90000000. : rijk    =  -4.0077828027643459E+148
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 28.01 s.
+
+-------------------------------------------------------------------------------
+bat[      91] ncas =       91000000. : rijk    =   2.5576747805114750E-292
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.42 s.
+
+-------------------------------------------------------------------------------
+bat[      92] ncas =       92000000. : rijk    =  -5.9813371728935821E+198
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 33.34 s.
+
+-------------------------------------------------------------------------------
+bat[      93] ncas =       93000000. : rijk    =  -1.2598676908216164E-234
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.69 s.
+
+-------------------------------------------------------------------------------
+bat[      94] ncas =       94000000. : rijk    =   3.1437304231402310E-225
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.45 s.
+
+-------------------------------------------------------------------------------
+bat[      95] ncas =       95000000. : rijk    =  -5.1851551887865989E-074
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 30.16 s.
+
+-------------------------------------------------------------------------------
+bat[      96] ncas =       96000000. : rijk    =  -3.7301010913868989E-256
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.16 s.
+
+-------------------------------------------------------------------------------
+bat[      97] ncas =       97000000. : rijk    =  -1.4737458081093361E-040
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.11 s.
+
+-------------------------------------------------------------------------------
+bat[      98] ncas =       98000000. : rijk    =  -2.1543033220171342E+282
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.14 s.
+
+-------------------------------------------------------------------------------
+bat[      99] ncas =       99000000. : rijk    =  -1.3490466970910884E+253
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.20 s.
+
+-------------------------------------------------------------------------------
+bat[     100] ncas =      100000000. : rijk    =  -5.2454195920430663E-221
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.46 s.
+
+-------------------------------------------------------------------------------
+bat[     101] ncas =      101000000. : rijk    =  -8.3042721851559149E+058
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.37 s.
+
+-------------------------------------------------------------------------------
+bat[     102] ncas =      102000000. : rijk    =  -4.6504086392652903E-151
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 31.29 s.
+
+-------------------------------------------------------------------------------
+bat[     103] ncas =      103000000. : rijk    =  -6.3804135588831260E+253
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 31.77 s.
+
+-------------------------------------------------------------------------------
+bat[     104] ncas =      104000000. : rijk    =   1.0682903189788874E+071
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.39 s.
+
+-------------------------------------------------------------------------------
+bat[     105] ncas =      105000000. : rijk    =  -1.1899551227705365E-098
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.47 s.
+
+-------------------------------------------------------------------------------
+bat[     106] ncas =      106000000. : rijk    =  -5.5354019958319410E-146
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 36.11 s.
+
+-------------------------------------------------------------------------------
+bat[     107] ncas =      107000000. : rijk    =  -1.6530362310332434E+034
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 32.42 s.
+
+-------------------------------------------------------------------------------
+bat[     108] ncas =      108000000. : rijk    =  -1.2478799247450555E+171
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.56 s.
+
+-------------------------------------------------------------------------------
+bat[     109] ncas =      109000000. : rijk    =  -2.2215781374345499E-249
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 34.16 s.
+
+-------------------------------------------------------------------------------
+bat[     110] ncas =      110000000. : rijk    =  -4.5656425374533447E+277
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 35.43 s.
+
+-------------------------------------------------------------------------------
+bat[     111] ncas =      111000000. : rijk    =  -1.3506757348649918E-079
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.43 s.
+
+-------------------------------------------------------------------------------
+bat[     112] ncas =      112000000. : rijk    =  -1.4057917102029303E-296
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.41 s.
+
+-------------------------------------------------------------------------------
+bat[     113] ncas =      113000000. : rijk    =  -7.3765090383378242E-092
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 27.73 s.
+
+-------------------------------------------------------------------------------
+bat[     114] ncas =      114000000. : rijk    =  -6.8538162045024066E+266
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.24 s.
+
+-------------------------------------------------------------------------------
+bat[     115] ncas =      115000000. : rijk    =   2.0018149304774862E-291
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 29.52 s.
+
+-------------------------------------------------------------------------------
+bat[     116] ncas =      116000000. : rijk    =  -5.6991315869822597E+292
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.58 s.
+
+-------------------------------------------------------------------------------
+bat[     117] ncas =      117000000. : rijk    =  -2.8905408518304592E+174
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 28.38 s.
+
+-------------------------------------------------------------------------------
+bat[     118] ncas =      118000000. : rijk    =  -1.3957344767501093E+181
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.34 s.
+
+-------------------------------------------------------------------------------
+bat[     119] ncas =      119000000. : rijk    =   1.6924472849782279E+064
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.82 s.
+
+-------------------------------------------------------------------------------
+bat[     120] ncas =      120000000. : rijk    =  -4.9548764133415052E-277
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 32.63 s.
+
+-------------------------------------------------------------------------------
+bat[     121] ncas =      121000000. : rijk    =   1.5335597120028231E-304
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.80 s.
+
+-------------------------------------------------------------------------------
+bat[     122] ncas =      122000000. : rijk    =  -4.5978950176388310E+145
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.15 s.
+
+-------------------------------------------------------------------------------
+bat[     123] ncas =      123000000. : rijk    =  -9.2829120522168807E+230
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.11 s.
+
+-------------------------------------------------------------------------------
+bat[     124] ncas =      124000000. : rijk    =  -5.9764309268333131E+021
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 28.67 s.
+
+-------------------------------------------------------------------------------
+bat[     125] ncas =      125000000. : rijk    =   9.7337269024922919E+174
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.04 s.
+
+-------------------------------------------------------------------------------
+bat[     126] ncas =      126000000. : rijk    =  -7.5522667229228863E-191
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   2 m. 27.74 s.
+
+-------------------------------------------------------------------------------
+bat[     127] ncas =      127000000. : rijk    =   8.1979944038000485E-076
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 33.41 s.
+
+-------------------------------------------------------------------------------
+bat[     128] ncas =      128000000. : rijk    =   2.8169774578389172E+209
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 46.94 s.
+
+-------------------------------------------------------------------------------
+bat[     129] ncas =      129000000. : rijk    =   6.3293285873681690E-099
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 35.82 s.
+
+-------------------------------------------------------------------------------
+bat[     130] ncas =      130000000. : rijk    =  -7.7868422162926315E-168
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 31.26 s.
+
+-------------------------------------------------------------------------------
+bat[     131] ncas =      131000000. : rijk    =   1.8599331014140172E-073
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   2 m. 15.43 s.
+
+-------------------------------------------------------------------------------
+bat[     132] ncas =      132000000. : rijk    =   1.6063846829969768E+105
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 39.14 s.
+
+-------------------------------------------------------------------------------
+bat[     133] ncas =      133000000. : rijk    =  -1.6306142344796505E+239
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.52 s.
+
+-------------------------------------------------------------------------------
+bat[     134] ncas =      134000000. : rijk    =   1.7955241453897080E+018
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.65 s.
+
+-------------------------------------------------------------------------------
+bat[     135] ncas =      135000000. : rijk    =  -5.7277543555514592E-104
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 30.34 s.
+
+-------------------------------------------------------------------------------
+bat[     136] ncas =      136000000. : rijk    =  -8.5324028278688849E+261
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 30.61 s.
+
+-------------------------------------------------------------------------------
+bat[     137] ncas =      137000000. : rijk    =   2.9343501279482658E-033
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.85 s.
+
+-------------------------------------------------------------------------------
+bat[     138] ncas =      138000000. : rijk    =  -1.8545574017770649E-287
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 27.62 s.
+
+-------------------------------------------------------------------------------
+bat[     139] ncas =      139000000. : rijk    =   2.1532535032289706E+117
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.39 s.
+
+-------------------------------------------------------------------------------
+bat[     140] ncas =      140000000. : rijk    =  -2.4084183225847149E-165
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.24 s.
+
+-------------------------------------------------------------------------------
+bat[     141] ncas =      141000000. : rijk    =   7.5528407133919540E+306
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 31.88 s.
+
+-------------------------------------------------------------------------------
+bat[     142] ncas =      142000000. : rijk    =   2.9575035354763494E-008
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.30 s.
+
+-------------------------------------------------------------------------------
+bat[     143] ncas =      143000000. : rijk    =  -1.1400291244373192E+181
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.72 s.
+
+-------------------------------------------------------------------------------
+bat[     144] ncas =      144000000. : rijk    =   1.7406989898044529E-281
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.65 s.
+
+-------------------------------------------------------------------------------
+bat[     145] ncas =      145000000. : rijk    =   2.9211487799865712E-055
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 30.40 s.
+
+-------------------------------------------------------------------------------
+bat[     146] ncas =      146000000. : rijk    =   2.6276307638155583E+045
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 36.34 s.
+
+-------------------------------------------------------------------------------
+bat[     147] ncas =      147000000. : rijk    =  -8.2853687429561179E+057
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 29.51 s.
+
+-------------------------------------------------------------------------------
+bat[     148] ncas =      148000000. : rijk    =  -1.1727122178266387E+268
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 38.23 s.
+
+-------------------------------------------------------------------------------
+bat[     149] ncas =      149000000. : rijk    =   5.3635354310667722E+040
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.03 s.
+
+-------------------------------------------------------------------------------
+bat[     150] ncas =      150000000. : rijk    =  -1.0172945872803574E+253
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.30 s.
+
+-------------------------------------------------------------------------------
+bat[     151] ncas =      151000000. : rijk    =  -1.8843525596542833E-182
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 35.14 s.
+
+-------------------------------------------------------------------------------
+bat[     152] ncas =      152000000. : rijk    =  -6.3444707116979425E-150
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 28.11 s.
+
+-------------------------------------------------------------------------------
+bat[     153] ncas =      153000000. : rijk    =   3.7632976811008213E-217
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.59 s.
+
+-------------------------------------------------------------------------------
+bat[     154] ncas =      154000000. : rijk    =  -7.8826776535865572E+048
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.99 s.
+
+-------------------------------------------------------------------------------
+bat[     155] ncas =      155000000. : rijk    =   1.5037607309453798E-011
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.23 s.
+
+-------------------------------------------------------------------------------
+bat[     156] ncas =      156000000. : rijk    =   7.9707280111110956E-118
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 28.90 s.
+
+-------------------------------------------------------------------------------
+bat[     157] ncas =      157000000. : rijk    =  -2.2050675377815119E-187
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 27.31 s.
+
+-------------------------------------------------------------------------------
+bat[     158] ncas =      158000000. : rijk    =  -5.5314380742393564E-132
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.88 s.
+
+-------------------------------------------------------------------------------
+bat[     159] ncas =      159000000. : rijk    =   4.1702162462235360E-144
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.87 s.
+
+-------------------------------------------------------------------------------
+bat[     160] ncas =      160000000. : rijk    =   3.0515683761383995E+232
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 33.64 s.
+
+-------------------------------------------------------------------------------
+bat[     161] ncas =      161000000. : rijk    =  -2.5900324767705883E-062
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.53 s.
+
+-------------------------------------------------------------------------------
+bat[     162] ncas =      162000000. : rijk    =   2.2366839623231105E+036
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.62 s.
+
+-------------------------------------------------------------------------------
+bat[     163] ncas =      163000000. : rijk    =  -1.7027240721028636E-021
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.50 s.
+
+-------------------------------------------------------------------------------
+bat[     164] ncas =      164000000. : rijk    =  -9.1166766104518761E+268
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.99 s.
+
+-------------------------------------------------------------------------------
+bat[     165] ncas =      165000000. : rijk    =   5.1790001014438768E-076
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.33 s.
+
+-------------------------------------------------------------------------------
+bat[     166] ncas =      166000000. : rijk    =  -7.6726019851921012E+214
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.44 s.
+
+-------------------------------------------------------------------------------
+bat[     167] ncas =      167000000. : rijk    =   7.2921029827080609E-149
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.33 s.
+
+-------------------------------------------------------------------------------
+bat[     168] ncas =      168000000. : rijk    =   3.6533927154327074E+056
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.42 s.
+
+-------------------------------------------------------------------------------
+bat[     169] ncas =      169000000. : rijk    =   7.8365891020333203E-256
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.42 s.
+
+-------------------------------------------------------------------------------
+bat[     170] ncas =      170000000. : rijk    =  -3.5892752942243314E-300
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.80 s.
+
+-------------------------------------------------------------------------------
+bat[     171] ncas =      171000000. : rijk    =  -3.7760026708772216E+063
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.30 s.
+
+-------------------------------------------------------------------------------
+bat[     172] ncas =      172000000. : rijk    =   2.2444756799775671E-218
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.15 s.
+
+-------------------------------------------------------------------------------
+bat[     173] ncas =      173000000. : rijk    =  -8.6381331835806081E+038
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 27.58 s.
+
+-------------------------------------------------------------------------------
+bat[     174] ncas =      174000000. : rijk    =   1.9599692890571186E-093
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.09 s.
+
+-------------------------------------------------------------------------------
+bat[     175] ncas =      175000000. : rijk    =   6.2666855498924874E-104
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.21 s.
+
+-------------------------------------------------------------------------------
+bat[     176] ncas =      176000000. : rijk    =   6.5784317723370333E-171
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.11 s.
+
+-------------------------------------------------------------------------------
+bat[     177] ncas =      177000000. : rijk    =  -5.1883877137120275E+238
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.11 s.
+
+-------------------------------------------------------------------------------
+bat[     178] ncas =      178000000. : rijk    =  -4.5610991865863366E+005
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.95 s.
+
+-------------------------------------------------------------------------------
+bat[     179] ncas =      179000000. : rijk    =   4.1387990369296322E-154
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.18 s.
+
+-------------------------------------------------------------------------------
+bat[     180] ncas =      180000000. : rijk    =   5.3166876599715041E+202
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.52 s.
+
+-------------------------------------------------------------------------------
+bat[     181] ncas =      181000000. : rijk    =  -7.3833047849111050E-236
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.98 s.
+
+-------------------------------------------------------------------------------
+bat[     182] ncas =      182000000. : rijk    =  -6.4955850659508780E-117
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.86 s.
+
+-------------------------------------------------------------------------------
+bat[     183] ncas =      183000000. : rijk    =  -2.4632428110813633E+233
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.42 s.
+
+-------------------------------------------------------------------------------
+bat[     184] ncas =      184000000. : rijk    =  -1.4719729104241297E+063
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.02 s.
+
+-------------------------------------------------------------------------------
+bat[     185] ncas =      185000000. : rijk    =  -1.8083914002136933E-039
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 27.75 s.
+
+-------------------------------------------------------------------------------
+bat[     186] ncas =      186000000. : rijk    =   2.3688955175085417E+029
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.30 s.
+
+-------------------------------------------------------------------------------
+bat[     187] ncas =      187000000. : rijk    =   3.6813926631569397E+280
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.43 s.
+
+-------------------------------------------------------------------------------
+bat[     188] ncas =      188000000. : rijk    =   7.3191901349804453E+023
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 36.55 s.
+
+-------------------------------------------------------------------------------
+bat[     189] ncas =      189000000. : rijk    =  -3.8593228031573001E-169
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.41 s.
+
+-------------------------------------------------------------------------------
+bat[     190] ncas =      190000000. : rijk    =   4.6077476115978664E-279
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.41 s.
+
+-------------------------------------------------------------------------------
+bat[     191] ncas =      191000000. : rijk    =   1.5754078623273707E+013
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 29.91 s.
+
+-------------------------------------------------------------------------------
+bat[     192] ncas =      192000000. : rijk    =   2.8609718254102130E-272
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.59 s.
+
+-------------------------------------------------------------------------------
+bat[     193] ncas =      193000000. : rijk    =   2.2523871623703684E-300
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.11 s.
+
+-------------------------------------------------------------------------------
+bat[     194] ncas =      194000000. : rijk    =  -3.9713359500554697E+183
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 31.63 s.
+
+-------------------------------------------------------------------------------
+bat[     195] ncas =      195000000. : rijk    =  -1.3156493806684813E-236
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.57 s.
+
+-------------------------------------------------------------------------------
+bat[     196] ncas =      196000000. : rijk    =   2.7664732475087992E-003
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.91 s.
+
+-------------------------------------------------------------------------------
+bat[     197] ncas =      197000000. : rijk    =   4.5111312676975032E+001
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.59 s.
+
+-------------------------------------------------------------------------------
+bat[     198] ncas =      198000000. : rijk    =   1.1534868267228520E+298
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 29.33 s.
+
+-------------------------------------------------------------------------------
+bat[     199] ncas =      199000000. : rijk    =   7.7358107515503608E-025
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 27.68 s.
+
+-------------------------------------------------------------------------------
+bat[     200] ncas =      200000000. : rijk    =  -5.1301363215954575E+042
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.21 s.
+
+-------------------------------------------------------------------------------
+bat[     201] ncas =      201000000. : rijk    =   3.4659921977672393E+205
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.93 s.
+
+-------------------------------------------------------------------------------
+bat[     202] ncas =      202000000. : rijk    =   1.1100154734851525E+297
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.63 s.
+
+-------------------------------------------------------------------------------
+bat[     203] ncas =      203000000. : rijk    =  -5.4319553277582248E-033
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 30.71 s.
+
+-------------------------------------------------------------------------------
+bat[     204] ncas =      204000000. : rijk    =  -1.0238525834334313E+204
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.25 s.
+
+-------------------------------------------------------------------------------
+bat[     205] ncas =      205000000. : rijk    =   6.1549976980777698E+177
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.24 s.
+
+-------------------------------------------------------------------------------
+bat[     206] ncas =      206000000. : rijk    =   3.6790847741801898E+148
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.57 s.
+
+-------------------------------------------------------------------------------
+bat[     207] ncas =      207000000. : rijk    =   1.0452320698522775E-100
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.75 s.
+
+-------------------------------------------------------------------------------
+bat[     208] ncas =      208000000. : rijk    =   4.9337045290922963E-266
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.58 s.
+
+-------------------------------------------------------------------------------
+bat[     209] ncas =      209000000. : rijk    =  -5.3075052079491778E-083
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.48 s.
+
+-------------------------------------------------------------------------------
+bat[     210] ncas =      210000000. : rijk    =   4.5454599162236715E+037
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.97 s.
+
+-------------------------------------------------------------------------------
+bat[     211] ncas =      211000000. : rijk    =  -3.4934279057689372E-307
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.55 s.
+
+-------------------------------------------------------------------------------
+bat[     212] ncas =      212000000. : rijk    =   5.6311919401473864E-274
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.76 s.
+
+-------------------------------------------------------------------------------
+bat[     213] ncas =      213000000. : rijk    =  -7.0945623039669953E-220
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.51 s.
+
+-------------------------------------------------------------------------------
+bat[     214] ncas =      214000000. : rijk    =  -4.2742900751583272E+108
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.47 s.
+
+-------------------------------------------------------------------------------
+bat[     215] ncas =      215000000. : rijk    =  -4.8268771894079550E-297
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 32.37 s.
+
+-------------------------------------------------------------------------------
+bat[     216] ncas =      216000000. : rijk    =  -6.1741137885159705E-158
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.68 s.
+
+-------------------------------------------------------------------------------
+bat[     217] ncas =      217000000. : rijk    =   7.0075744092890619E+063
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.68 s.
+
+-------------------------------------------------------------------------------
+bat[     218] ncas =      218000000. : rijk    =   8.3960275523373965E-301
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.44 s.
+
+-------------------------------------------------------------------------------
+bat[     219] ncas =      219000000. : rijk    =   1.7556895019123711E-182
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.64 s.
+
+-------------------------------------------------------------------------------
+bat[     220] ncas =      220000000. : rijk    =   9.0360925905722390E-023
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.73 s.
+
+-------------------------------------------------------------------------------
+bat[     221] ncas =      221000000. : rijk    =  -2.9456691211335414E+126
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.62 s.
+
+-------------------------------------------------------------------------------
+bat[     222] ncas =      222000000. : rijk    =  -8.7477976585694217E-259
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.60 s.
+
+-------------------------------------------------------------------------------
+bat[     223] ncas =      223000000. : rijk    =  -1.8063022545553231E-134
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.25 s.
+
+-------------------------------------------------------------------------------
+bat[     224] ncas =      224000000. : rijk    =   1.5416337509800719E+060
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.51 s.
+
+-------------------------------------------------------------------------------
+bat[     225] ncas =      225000000. : rijk    =   2.9609864572122414E+096
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 33.83 s.
+
+-------------------------------------------------------------------------------
+bat[     226] ncas =      226000000. : rijk    =   1.0596796689366696E+304
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.29 s.
+
+-------------------------------------------------------------------------------
+bat[     227] ncas =      227000000. : rijk    =  -8.7848310636406418E-058
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.61 s.
+
+-------------------------------------------------------------------------------
+bat[     228] ncas =      228000000. : rijk    =  -3.6750165357997102E+094
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.35 s.
+
+-------------------------------------------------------------------------------
+bat[     229] ncas =      229000000. : rijk    =   2.9504366709922226E-069
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.59 s.
+
+-------------------------------------------------------------------------------
+bat[     230] ncas =      230000000. : rijk    =   1.3830720009043372E+235
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.62 s.
+
+-------------------------------------------------------------------------------
+bat[     231] ncas =      231000000. : rijk    =  -1.3030863007604576E+071
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.65 s.
+
+-------------------------------------------------------------------------------
+bat[     232] ncas =      232000000. : rijk    =   7.0739380449383964E-109
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 27.21 s.
+
+-------------------------------------------------------------------------------
+bat[     233] ncas =      233000000. : rijk    =  -4.8447208127158774E+077
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.96 s.
+
+-------------------------------------------------------------------------------
+bat[     234] ncas =      234000000. : rijk    =  -1.1010788460645256E+168
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.34 s.
+
+-------------------------------------------------------------------------------
+bat[     235] ncas =      235000000. : rijk    =  -2.8213601587718618E+047
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.11 s.
+
+-------------------------------------------------------------------------------
+bat[     236] ncas =      236000000. : rijk    =   5.1461695208677017E-176
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.75 s.
+
+-------------------------------------------------------------------------------
+bat[     237] ncas =      237000000. : rijk    =  -1.1391187386698414E+101
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.73 s.
+
+-------------------------------------------------------------------------------
+bat[     238] ncas =      238000000. : rijk    =  -6.3411499814927405E-224
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 35.82 s.
+
+-------------------------------------------------------------------------------
+bat[     239] ncas =      239000000. : rijk    =  -2.1404224835593866E+042
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.01 s.
+
+-------------------------------------------------------------------------------
+bat[     240] ncas =      240000000. : rijk    =  -1.8700500133894900E+161
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.66 s.
+
+-------------------------------------------------------------------------------
+bat[     241] ncas =      241000000. : rijk    =   1.0419694538178168E+147
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.96 s.
+
+-------------------------------------------------------------------------------
+bat[     242] ncas =      242000000. : rijk    =  -4.7743016493137171E+236
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.66 s.
+
+-------------------------------------------------------------------------------
+bat[     243] ncas =      243000000. : rijk    =   5.8420797642591903E+253
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.52 s.
+
+-------------------------------------------------------------------------------
+bat[     244] ncas =      244000000. : rijk    =  -5.9125673237613603E+249
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.55 s.
+
+-------------------------------------------------------------------------------
+bat[     245] ncas =      245000000. : rijk    =   4.4584796914291602E-069
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.23 s.
+
+-------------------------------------------------------------------------------
+bat[     246] ncas =      246000000. : rijk    =  -5.8586958722094829E-064
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.96 s.
+
+-------------------------------------------------------------------------------
+bat[     247] ncas =      247000000. : rijk    =  -4.7669232182187640E+147
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 31.38 s.
+
+-------------------------------------------------------------------------------
+bat[     248] ncas =      248000000. : rijk    =  -1.0506792651485141E-283
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.38 s.
+
+-------------------------------------------------------------------------------
+bat[     249] ncas =      249000000. : rijk    =  -5.1843891561050126E+088
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 30.41 s.
+
+-------------------------------------------------------------------------------
+bat[     250] ncas =      250000000. : rijk    =  -2.7217312377944089E-111
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 27.40 s.
+
+-------------------------------------------------------------------------------
+bat[     251] ncas =      251000000. : rijk    =   1.0520961216873041E+193
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.22 s.
+
+-------------------------------------------------------------------------------
+bat[     252] ncas =      252000000. : rijk    =   1.9227645973680143E+047
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.95 s.
+
+-------------------------------------------------------------------------------
+bat[     253] ncas =      253000000. : rijk    =  -3.0542360720820678E-009
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.44 s.
+
+-------------------------------------------------------------------------------
+bat[     254] ncas =      254000000. : rijk    =  -1.1155179491677175E+241
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.12 s.
+
+-------------------------------------------------------------------------------
+bat[     255] ncas =      255000000. : rijk    =   2.0098082399652395E+043
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.87 s.
+
+-------------------------------------------------------------------------------
+bat[     256] ncas =      256000000. : rijk    =  -8.7059270724571431E-189
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.91 s.
+
+-------------------------------------------------------------------------------
+bat[     257] ncas =      257000000. : rijk    =   2.3314425533168172E+091
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.55 s.
+
+-------------------------------------------------------------------------------
+bat[     258] ncas =      258000000. : rijk    =  -8.0135039658745785E-040
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.80 s.
+
+-------------------------------------------------------------------------------
+bat[     259] ncas =      259000000. : rijk    =  -5.9326419477242209E+180
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.34 s.
+
+-------------------------------------------------------------------------------
+bat[     260] ncas =      260000000. : rijk    =  -9.8296962062267902E-120
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.67 s.
+
+-------------------------------------------------------------------------------
+bat[     261] ncas =      261000000. : rijk    =   4.3059581731788163E-256
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.20 s.
+
+-------------------------------------------------------------------------------
+bat[     262] ncas =      262000000. : rijk    =  -2.1721351174656757E-209
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.84 s.
+
+-------------------------------------------------------------------------------
+bat[     263] ncas =      263000000. : rijk    =  -2.6434774362821974E-284
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.78 s.
+
+-------------------------------------------------------------------------------
+bat[     264] ncas =      264000000. : rijk    =  -5.7411270828625533E+211
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.73 s.
+
+-------------------------------------------------------------------------------
+bat[     265] ncas =      265000000. : rijk    =   3.7624596868281640E+247
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.98 s.
+
+-------------------------------------------------------------------------------
+bat[     266] ncas =      266000000. : rijk    =  -1.3082839832879634E-272
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.27 s.
+
+-------------------------------------------------------------------------------
+bat[     267] ncas =      267000000. : rijk    =   2.3853505417759896E+238
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 24.24 s.
+
+-------------------------------------------------------------------------------
+bat[     268] ncas =      268000000. : rijk    =   4.2228593441996018E-044
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.02 s.
+
+-------------------------------------------------------------------------------
+bat[     269] ncas =      269000000. : rijk    =   1.6513865031238339E+251
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.60 s.
+
+-------------------------------------------------------------------------------
+bat[     270] ncas =      270000000. : rijk    =   1.4709893406933732E+284
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.36 s.
+
+-------------------------------------------------------------------------------
+bat[     271] ncas =      271000000. : rijk    =   3.6288218860063581E+045
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.21 s.
+
+-------------------------------------------------------------------------------
+bat[     272] ncas =      272000000. : rijk    =  -4.1415498192294042E-020
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.92 s.
+
+-------------------------------------------------------------------------------
+bat[     273] ncas =      273000000. : rijk    =   2.7146023796081118E+116
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.55 s.
+
+-------------------------------------------------------------------------------
+bat[     274] ncas =      274000000. : rijk    =  -5.4732691161602875E-303
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.07 s.
+
+-------------------------------------------------------------------------------
+bat[     275] ncas =      275000000. : rijk    =  -1.3415173155479419E+271
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.86 s.
+
+-------------------------------------------------------------------------------
+bat[     276] ncas =      276000000. : rijk    =  -3.2897389717190147E+082
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.76 s.
+
+-------------------------------------------------------------------------------
+bat[     277] ncas =      277000000. : rijk    =   4.4309236953125123E+291
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 23.17 s.
+
+-------------------------------------------------------------------------------
+bat[     278] ncas =      278000000. : rijk    =   1.3749506579315685E+208
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.91 s.
+
+-------------------------------------------------------------------------------
+bat[     279] ncas =      279000000. : rijk    =   7.5824031529363529E-186
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.72 s.
+
+-------------------------------------------------------------------------------
+bat[     280] ncas =      280000000. : rijk    =  -1.4324870972959181E+061
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.86 s.
+
+-------------------------------------------------------------------------------
+bat[     281] ncas =      281000000. : rijk    =   8.7134402923497766E-079
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 26.75 s.
+
+-------------------------------------------------------------------------------
+bat[     282] ncas =      282000000. : rijk    =  -3.3199720855757206E-262
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 32.23 s.
+
+-------------------------------------------------------------------------------
+bat[     283] ncas =      283000000. : rijk    =   1.0640058103675086E-165
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.51 s.
+
+-------------------------------------------------------------------------------
+bat[     284] ncas =      284000000. : rijk    =  -1.0384688047793498E+199
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.67 s.
+
+-------------------------------------------------------------------------------
+bat[     285] ncas =      285000000. : rijk    =  -8.9885635438406418E-244
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.42 s.
+
+-------------------------------------------------------------------------------
+bat[     286] ncas =      286000000. : rijk    =   1.2458436944008599E-248
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.69 s.
+
+-------------------------------------------------------------------------------
+bat[     287] ncas =      287000000. : rijk    =  -3.8514215336506520E-306
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.41 s.
+
+-------------------------------------------------------------------------------
+bat[     288] ncas =      288000000. : rijk    =   8.2944578006130218E-122
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.48 s.
+
+-------------------------------------------------------------------------------
+bat[     289] ncas =      289000000. : rijk    =   5.1152831303495118E-197
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.96 s.
+
+-------------------------------------------------------------------------------
+bat[     290] ncas =      290000000. : rijk    =  -5.0025126159658649E-241
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.84 s.
+
+-------------------------------------------------------------------------------
+bat[     291] ncas =      291000000. : rijk    =   2.3760010492356076E-268
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 25.62 s.
+
+-------------------------------------------------------------------------------
+bat[     292] ncas =      292000000. : rijk    =   5.7107228110609425E+014
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 22.81 s.
+
+-------------------------------------------------------------------------------
+bat[     293] ncas =      293000000. : rijk    =   2.0657769140123269E+289
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.79 s.
+
+-------------------------------------------------------------------------------
+bat[     294] ncas =      294000000. : rijk    =   3.7380337629185802E+238
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.52 s.
+
+-------------------------------------------------------------------------------
+bat[     295] ncas =      295000000. : rijk    =  -2.0111639058113322E+035
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.91 s.
+
+-------------------------------------------------------------------------------
+bat[     296] ncas =      296000000. : rijk    =  -5.2120645111558182E-272
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.91 s.
+
+-------------------------------------------------------------------------------
+bat[     297] ncas =      297000000. : rijk    =   7.2461958139292879E+022
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.65 s.
+
+-------------------------------------------------------------------------------
+bat[     298] ncas =      298000000. : rijk    =  -4.1988445368470456E-212
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 20.64 s.
+
+-------------------------------------------------------------------------------
+bat[     299] ncas =      299000000. : rijk    =   5.6935469836849080E+156
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.31 s.
+
+-------------------------------------------------------------------------------
+bat[     300] ncas =      300000000. : rijk    =   1.7413025523821269E+022
+              ncut =              0. :  ncut/s =  0.000000000E+00
+              gcut =              0. :  gcut/s =  0.000000000E+00
+          cpu time =   1 m. 21.32 s.
+
+===============================================================================
+
+ Summary for the end of job
+
+-------------------------------------------------------------------------------
+ number of analyz call vs ncol
+-------------------------------------------------------------------------------
+     ncol          number
+        1              1.   : start of calculation            
+        2              1.   : end of calculation              
+        3            300.   : end of a batch                  
+        4      300000000.   : source                          
+        5              0.   : detection of geometry error/warn
+        6              0.   : recovery from geometry warning  
+        7              0.   : termination by geometry error   
+        8      201676026.   : termination by weight cut-off   
+        9              0.   : termination by time cut-off     
+       10      446602554.   : geometry boundary crossing      
+       11              0.   : termination by energy cut-off   
+       12      102134327.   : termination by escape or leakage
+       13         746506.   : reaction : (n,x) type           
+       14     1765905227.   : reaction : (n,n'x) type         
+       15        1135137.   : sequential transport for tally  
+
+-------------------------------------------------------------------------------
+ List of transport particles
+-------------------------------------------------------------------------------
+     Name      kf-code        mass       charge   baryon
+     proton       2212        938.3         1       1
+     neutron      2112        939.6         0       1
+     electron       11          0.5        -1       0
+     photon         22          0.0         0       0
+
+     nu_ebar       -12          0.0         0       0
+
+-------------------------------------------------------------------------------
+ prod. particles       number        weight        weight per source
+-------------------------------------------------------------------------------
+     photon          4605172.     4.5385207E+06     1.4990769E+11
+     neutron             238.     2.2964414E+02     7.5851635E+06
+     other                 2.     1.9767249E+00     6.5291374E+04
+     electron              2.     1.9767249E+00     6.5291374E+04
+     proton                2.     1.9767249E+00     6.5291374E+04
+
+-------------------------------------------------------------------------------
+ the other kind of produced particles
+-------------------------------------------------------------------------------
+     Name      kf-code        number     mass       charge   baryon
+     nu_ebar       -12             2       0.0         0       0
+
+-------------------------------------------------------------------------------
+ particle decays       number        weight        weight per source
+-------------------------------------------------------------------------------
+     neutron               2.     1.9767249E+00     6.5291374E+04
+
+-------------------------------------------------------------------------------
+ stop. particles.    number        weight        weight per source
+-------------------------------------------------------------------------------
+     electron            847.     8.4335326E+02     2.7856023E+07
+     other                 2.     1.9767249E+00     6.5291374E+04
+     proton                2.     1.9767249E+00     6.5291374E+04
+
+-------------------------------------------------------------------------------
+ the other kind of stopped particles
+-------------------------------------------------------------------------------
+     Name      kf-code        number     mass       charge   baryon
+     nu_ebar       -12             2       0.0         0       0
+
+-------------------------------------------------------------------------------
+ leak. particles       number        weight        weight per source
+-------------------------------------------------------------------------------
+     neutron        87043547.     8.6328160E+07     2.8514258E+12
+     photon         15090780.     1.5027646E+07     4.9636429E+11
+
+-------------------------------------------------------------------------------
+ cut-off neutron       number        weight        number per source
+-------------------------------------------------------------------------------
+     neutron               0.     0.0000000E+00     0.0000000E+00
+
+-------------------------------------------------------------------------------
+ cut-off photon        number        weight        number per source
+-------------------------------------------------------------------------------
+     photon                0.     0.0000000E+00     0.0000000E+00
+
+-------------------------------------------------------------------------------
+ source: maxcas    maxbch      irskip   average weight          total source
+-------------------------------------------------------------------------------
+     1000000         300           0    1.0091812E-13    3.0275436663186E-05
+
+-------------------------------------------------------------------------------
+ CG error summary
+-------------------------------------------------------------------------------
+ Number of lost particles     =     0 / nlost =       10
+ Number of geometry recovering =     0
+ Number of unrecovered errors =     0
+
+-------------------------------------------------------------------------------
+ This is restart calculation. Initial random seed is read from deposit_yz_all.out
+      initial random seed =   8.8265504963752248E+216
+ next initial random seed =   4.9889687391256531E+122
+
+-------------------------------------------------------------------------------
+ job termination date : 2021/10/05
+                 time :   19:32:15
+
+-------------------------------------------------------------------------------
+    CPU time and number of event called in PHITS
+-------------------------------------------------------------------------------
+
+                             sec
+total cpu time =        26097.02
+
+
+                           count
+      analysis =     2616524051.  : data processing
+         nevap =              0.  : evaporation
+        dexgam =              0.  : de-excitation
+         nreac =     1766651733.  : atomic and nuclear reactions
+         dklos =              2.  : particle decay
+         hydro =              0.  : nucleon-nucleon scattering
+        n-data =     1746948166.  : neutron data library
+        h-data =              0.  : proton data library
+        p-data =       19703565.  : photon data library
+        e-data =              0.  : electron data library
+        p-egs5 =              0.  : photon interaction with EGS5
+        e-egs5 =              0.  : electron interaction with EGS5
+      e-tsmode =              0.  : electron track structure mode
+    ion-tsmode =              0.  : ion track structure mode
+     photonucl =              0.  : photo-nuclear reaction
+       mu-reac =              0.  : muon-induced nuclear reaction
+       mu-brem =              0.  : muon-induced bremsstrahlung
+       mu-pprd =              0.  : muon-induced pair production
+        mu-cap =              0.  : muon capture in nucleus
+         elast =              0.  : elastic scattering
+         ncasc =              0.  : nuclear reaction model
+
+       bertini =              0.  : Bertini model
+        isobar =              0.  : isobar model
+           JAM =              0.  : JAM model
+           QMD =              0.  : JQMD model
+        JAMQMD =              0.  : JAMQMD model
+          INCL =              0.  : INCL model
+        INCELF =              0.  : INCELF model
+     frag data =              0.  : user defined cross section
+       SCINFUL =              0.  : SCINFUL mode
+
+>>> Citation Request >>>=======================================================
+
+ This execution uses model(s) that must be explicitly cited in addition to
+ the PHITS original document: T.Sato et al., J.Nucl.Sci.Technol.55, 684-690 (2018).
+ Please refer the following document(s) in your publication using this result
+
+ The KUROTAMA model:
+    K. Iida, A. Kohama, and K. Oyamatsu, J. Phys. Soc. Japan 76, 044201 (2007).
+
+ END 
