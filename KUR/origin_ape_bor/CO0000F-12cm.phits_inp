@@ -6,7 +6,7 @@ KUR HWNIF CO0000F-12cm.source test
 
 [Parameters]
  icntl    =           0     # (D=0) 3:ECH 5:NOR 6:SRC 7,8:GSH 11:DSH 12:DUMP
- maxcas   =      1.0E+3     # (D=10) number of particles per one batch
+ maxcas   =      1.0E+7     # (D=10) number of particles per one batch
  maxbch   =          10     # (D=10) number of batches
  emin(2)  =         0.0     # (D=1.0) cut-off energy of neutron (MeV)
  dmax(2)  =  20.0000000     # (D=emin(2)) data max. energy of neutron (MeV)
@@ -69,7 +69,7 @@ zmax    =   35
    output =  dose           # total deposit energy
      axis =    yz           # axis of output
      file = deposit_yz_all.out     # file name of output for the above axis
-     part =  all electron photon neutron      
+     part =  all electron photon neutron alpha     
     gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
    epsout =    1            # (D=0) generate eps file by ANGEL
 
@@ -142,6 +142,28 @@ zmax    =   35
     gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
    epsout =    1            # (D=0) generate eps file by ANGEL
 
+[ T - Deposit ] $空間線量分布(yz)-アルファ線
+mesh =  xyz            # mesh type is xyz scoring mesh
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   50
+ymin    =  -25
+ymax    =   25
+z-type  =   2
+nz      =   225
+zmin    =  -15
+zmax    =   35
+     unit =    0            # unit is 1=[MeV/cm^3/source], 0=[Gy/source]
+ material =  all            # (D=all) number of specific material
+   output =  dose           # total deposit energy
+     axis =    yz           # axis of output
+     file = deposit_yz_alpha.out     # file name of output for the above axis
+     part =  alpha       
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+   epsout =    1            # (D=0) generate eps file by ANGEL
 
 [ T - Deposit ] $空間線量分布(r-z)-All
 mesh =  r-z            # mesh type is xyz scoring mesh
@@ -158,7 +180,7 @@ zmax    =   35
    output =  dose           # total deposit energy
      axis =    rz           # axis of output
      file = deposit_r_all.out     # file name of output for the above axis
-     part =  all electron photon neutron      
+     part =  all electron photon neutron alpha      
     gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
    epsout =    1            # (D=0) generate eps file by ANGEL
 
@@ -357,6 +379,56 @@ unit    =   1
 $output  =   flux
 axis    =   z
 file    =   track_pdd_electron.dat
+epsout  =   1
+angel = ylin 
+
+[T-Track]  $アルファ線束分布(yz)
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   50
+ymin    =  -15
+ymax    =   15
+z-type  =   2
+nz      =   225
+zmin    =  -15
+zmax    =   35
+part  = alpha
+e-type  =   1
+ne      =   1
+  1.000000000E-03 20
+unit    =   1
+$output  =   flux
+axis    =   yz
+file    =   track_yz_alpha.dat
+epsout  =   1
+gshow =    1
+
+[T-Track]  $α線束分布PDD(yz)
+mesh  = xyz
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   1
+ymin    =  -1.0
+ymax    =   1.0
+z-type  =   2
+nz      =   370
+zmin    =  -12
+zmax    =   35
+part  = alpha
+e-type  =   1
+ne      =   1
+  1.000000000E-03 20
+unit    =   1
+$output  =   flux
+axis    =   z
+file    =   track_pdd_alpha.dat
 epsout  =   1
 angel = ylin 
 
