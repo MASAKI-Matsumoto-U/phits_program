@@ -1,0 +1,128 @@
+$  June 15, 2015 T.Takata, Y.Sakurai
+$  CO0000F-12cm.phits_source
+$  corresponding SERA source file : CO0000F-12cm.source
+$
+$  KUR Heavy Water Neutron Irradiation Facility
+$  mode : CO0000F
+$  collimator : Rx_215_enr t=10cm, aperture radius=12cm 
+$
+$  multi source description  
+$  no.1  low energy neutron group 
+$     2  high energy neutron group
+$     3  gamma ray group
+$
+$  intensity (particles/cm^2-MW-min)
+$  no.1    3.2333E+09
+$  no.2    1.3950E+08
+$ (no.1+2  3.3728E+09)
+$  no.3    1.3180E+08
+$  total   3.5046E+09
+$
+[Source]
+
+ totfact  =  3.5046E+09*PI*30.0*30.0      $ particles/MW-min
+ iscorr   =  0 
+$   low energy neutron group
+
+<source>  =  3.2333E+09
+  s-type  =  4
+    proj  =  neutron
+      x0  =  0.0
+      y0  =  0.0
+      z0  =  -11.0
+      z1  =  -11.0
+      r0  =  30.0
+      r1  =  0.0
+     dir  =  data
+  e-type  =  1
+      ne  =  6
+      1.0000E-11     4.4543E+05
+      4.1400E-07     7.8540E+08
+      3.0600E-06     1.0654E+09
+      2.2600E-05     6.7201E+08
+      1.6700E-04     4.6082E+08
+      1.2300E-03     2.4925E+08
+      9.1200E-03
+  a-type  =  1
+      na  =  10
+      0.00000E+00    1.0
+      6.59939E-01    1.0
+      7.87179E-01    1.0
+      8.25038E-01    1.0
+      8.62897E-01    1.0
+      9.00756E-01    1.0
+      9.36497E-01    1.0
+      9.56648E-01    1.0
+      9.73658E-01    1.0
+      9.88045E-01    1.0
+      1.00000E+00
+
+$   high energy neutron group
+
+<source>  =  1.3950E+08
+  s-type  =  4
+    proj  =  neutron
+      x0  =  0.0
+      y0  =  0.0
+      z0  =  -11.0
+      z1  =  -11.0
+      r0  =  30.0
+      r1  =  0.0
+     dir  =  data
+  e-type  =  1
+      ne  =  5
+      9.1200E-03     9.0608E+07
+      6.7400E-02     2.6350E+07
+      4.0800E-01     1.4539E+07
+      1.3500E+00     7.2393E+06
+      4.4900E+00     7.9455E+05
+      1.4900E+01
+  a-type  =  1
+      na  =  10
+      0.00000E+00    1.0
+      9.06310E-01    1.0
+      9.39690E-01    1.0
+      9.53720E-01    1.0
+      9.65930E-01    1.0
+      9.76300E-01    1.0
+      9.84810E-01    1.0
+      9.91440E-01    1.0
+      9.96190E-01    1.0
+      9.99050E-01    1.0
+      1.00000E+00
+
+$   gamma ray group
+
+<source>  =  1.3180E+08
+  s-type  =  4
+    proj  =  photon
+      x0  =  0.0
+      y0  =  0.0
+      z0  =  -11.0
+      z1  =  -11.0
+      r0  =  30.0
+      r1  =  0.0
+     dir  =  data
+  e-type  =  1
+      ne  =  7
+      1.0000E-02    3.8842E+02
+      1.0000E-01    2.0236E+05
+      6.0000E-01    4.0200E+06
+      1.6600E+00    1.2427E+08
+      2.0000E+00    1.8470E+06
+      5.0000E+00    1.4532E+06
+      8.0000E+00    1.3717E+04
+      1.4000E+01
+  a-type  =  1
+      na  =  10
+      0.00000E+00    1.0
+      6.59939E-01    1.0
+      7.87179E-01    1.0
+      8.25038E-01    1.0
+      8.62897E-01    1.0
+      9.00756E-01    1.0
+      9.36497E-01    1.0
+      9.56648E-01    1.0
+      9.73658E-01    1.0
+      9.88045E-01    1.0
+      1.00000E+00
