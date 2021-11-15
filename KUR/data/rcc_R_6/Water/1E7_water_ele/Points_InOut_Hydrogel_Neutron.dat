@@ -1,0 +1,157 @@
+[ T-Cross ]
+    title = [t-cross] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -2.000000      # minimum value of x-mesh points
+     xmax =   2.000000      # maximum value of x-mesh points
+#    xdel =   4.000000      # mesh width of x-mesh points
+       nx =      1          # number of x-mesh points
+#    data = ( x(i), i = 1, nx + 1 )
+#          -2.00000E+00  2.00000E+00
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -2.000000      # minimum value of y-mesh points
+     ymax =   2.000000      # maximum value of y-mesh points
+#    ydel =   4.000000      # mesh width of y-mesh points
+       ny =      1          # number of y-mesh points
+#    data = ( y(i), i = 1, ny + 1 )
+#          -2.00000E+00  2.00000E+00
+   z-type =    1            # z-mesh is given by the below data
+       nz =      5          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+           -1.09000E+01  0.00000E+00  1.00000E+00  2.00000E+00  5.00000E+00
+            1.00000E+01
+   e-type =    1            # e-mesh is given by the below data
+       ne =      3          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+            0.00000E+00  5.00000E-07  1.00000E-02  2.00000E+01
+     unit =    1            # unit is [1/cm^2/source]
+     axis =    z            # axis of output
+     file = Points_InOut_Hydrogel_Neutron.dat  # file name of output for the above axis
+   output = flux            # surface crossing flux
+     part =  neutron  
+# kf/name :  2112     
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :          18 (  0)           0 (  0)          18 (  0)
+
+#------------------------------------------------------------------------------
+#newpage:
+#   no. =  1   ix  =  1   iy  =  1
+#   x = (  -2.0000E+00  -   2.0000E+00  )
+#   y = (  -2.0000E+00  -   2.0000E+00  )
+#  ie =  1
+#   e = (   0.0000E+00  -   5.0000E-07  )
+
+x: z [cm]
+y:   Flux  [1/cm^2/source]                 
+p: xlin ylog afac(0.8) form(0.9)
+h:              x            y(neutron ),l3     n 
+#       z surface position   neutron     r.err 
+               -1.0900E+01   5.0512E+08  0.0329
+                0.0000E+00   1.8362E+09  0.0106
+                1.0000E+00   6.0741E+09  0.0115
+                2.0000E+00   6.6583E+09  0.0097
+                5.0000E+00   3.4573E+09  0.0137
+                1.0000E+01   4.8740E+08  0.0344
+
+#   sum over    9.6000E+01   3.1697E+09
+
+'no. =  1,  ie =  1,  ix =  1,  iy =  1'
+msuc: {\huge [t-cross] in xyz mesh}
+msdr: {\it plotted by \ANGEL \version}
+msdl: {\it calculated by \PHITS  3.24}
+wt: s(0.7)
+\vspace{-3}
+  z surface crossing
+  area  &=&   1.6000E+01 [cm^2]
+  xmin  &=&  -2.0000E+00 [cm]
+  xmax  &=&   2.0000E+00 [cm]
+  ymin  &=&  -2.0000E+00 [cm]
+  ymax  &=&   2.0000E+00 [cm]
+  emin  &=&   0.0000E+00 [MeV]
+  emax  &=&   5.0000E-07 [MeV]
+e:
+
+#------------------------------------------------------------------------------
+ newpage:
+#   no. =  2   ix  =  1   iy  =  1
+#   x = (  -2.0000E+00  -   2.0000E+00  )
+#   y = (  -2.0000E+00  -   2.0000E+00  )
+#  ie =  2
+#   e = (   5.0000E-07  -   1.0000E-02  )
+
+x: z [cm]
+y:   Flux  [1/cm^2/source]                 
+p: xlin ylog afac(0.8) form(0.9)
+h:              x            y(neutron ),l3     n 
+#       z surface position   neutron     r.err 
+               -1.0900E+01   6.8943E+09  0.0179
+                0.0000E+00   3.3857E+09  0.0069
+                1.0000E+00   2.8131E+09  0.0114
+                2.0000E+00   1.5144E+09  0.0150
+                5.0000E+00   1.6656E+08  0.0422
+                1.0000E+01   6.4735E+06  0.2734
+
+#   sum over    9.6000E+01   2.4634E+09
+
+'no. =  2,  ie =  2,  ix =  1,  iy =  1'
+msuc: {\huge [t-cross] in xyz mesh}
+msdr: {\it plotted by \ANGEL \version}
+msdl: {\it calculated by \PHITS  3.24}
+wt: s(0.7)
+\vspace{-3}
+  z surface crossing
+  area  &=&   1.6000E+01 [cm^2]
+  xmin  &=&  -2.0000E+00 [cm]
+  xmax  &=&   2.0000E+00 [cm]
+  ymin  &=&  -2.0000E+00 [cm]
+  ymax  &=&   2.0000E+00 [cm]
+  emin  &=&   5.0000E-07 [MeV]
+  emax  &=&   1.0000E-02 [MeV]
+e:
+
+#------------------------------------------------------------------------------
+ newpage:
+#   no. =  3   ix  =  1   iy  =  1
+#   x = (  -2.0000E+00  -   2.0000E+00  )
+#   y = (  -2.0000E+00  -   2.0000E+00  )
+#  ie =  3
+#   e = (   1.0000E-02  -   2.0000E+01  )
+
+x: z [cm]
+y:   Flux  [1/cm^2/source]                 
+p: xlin ylog afac(0.8) form(0.9)
+h:              x            y(neutron ),l3     n 
+#       z surface position   neutron     r.err 
+               -1.0900E+01   2.4264E+08  0.0821
+                0.0000E+00   1.6782E+08  0.0297
+                1.0000E+00   1.2312E+08  0.0328
+                2.0000E+00   7.7099E+07  0.0394
+                5.0000E+00   2.0584E+07  0.0787
+                1.0000E+01   5.1164E+06  0.1569
+
+#   sum over    9.6000E+01   1.0606E+08
+
+'no. =  3,  ie =  3,  ix =  1,  iy =  1'
+msuc: {\huge [t-cross] in xyz mesh}
+msdr: {\it plotted by \ANGEL \version}
+msdl: {\it calculated by \PHITS  3.24}
+wt: s(0.7)
+\vspace{-3}
+  z surface crossing
+  area  &=&   1.6000E+01 [cm^2]
+  xmin  &=&  -2.0000E+00 [cm]
+  xmax  &=&   2.0000E+00 [cm]
+  ymin  &=&  -2.0000E+00 [cm]
+  ymax  &=&   2.0000E+00 [cm]
+  emin  &=&   1.0000E-02 [MeV]
+  emax  &=&   2.0000E+01 [MeV]
+e:
+ 
+# Information for Restart Calculation
+# This calculation was newly started
+# istdev =  2 # 1:Batch variance, 2:History variance
+# resc2  = 1.00918122271111685E-06 # Total source weight or Total source weight / maxcas
+# resc3  = 1.00000000000000000E+07 # Total history number or Total batch number
+# maxcas =     1000000 # History / Batch, only used for istdev=1
+# rijklst=  -1.0909668918764960E-250 # Next initial random number
+# bitrseed = 1000110000001000111111101100101001110101110010000011011101101000
