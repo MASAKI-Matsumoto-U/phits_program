@@ -8,3 +8,5 @@
 
 
 〇〇_sp : スペクトル有り, 計算時間が長い。
+
+kuahashi_syuron
