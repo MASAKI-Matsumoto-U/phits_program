@@ -5,7 +5,7 @@ file  =   CO0000F-12cm.phits_inp
 KUR HWNIF CO0000F-12cm.source test
 
 [Parameters]
- icntl    =           0     # (D=0) 3:ECH 5:NOR 6:SRC 7,8:GSH 11:DSH 12:DUMP
+ icntl    =           8     # (D=0) 3:ECH 5:NOR 6:SRC 7,8:GSH 11:DSH 12:DUMP
  maxcas   =      1.0E+4     # (D=10) number of particles per one batch
  maxbch   =          20     # (D=10) number of batches
  emin(2)  =         0.0     # (D=1.0) cut-off energy of neutron (MeV)
@@ -69,6 +69,29 @@ zmax    =   35
    output =  dose           # total deposit energy
      axis =    yz           # axis of output
      file = deposit_yz_all.out     # file name of output for the above axis
+     part =  all electron photon neutron      
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
+   epsout =    1            # (D=0) generate eps file by ANGEL
+
+[ T - Deposit ] $空間線量分布(yz)-All
+mesh =  xyz            # mesh type is xyz scoring mesh
+x-type  =   2
+nx      =   1
+xmin    =  -1.0
+xmax    =   1.0
+y-type  =   2
+ny      =   50
+ymin    =  -5
+ymax    =   5
+z-type  =   2
+nz      =   225
+zmin    =  -5
+zmax    =   5
+     unit =    0            # unit is 1=[MeV/cm^3/source], 0=[Gy/source]
+ material =  all            # (D=all) number of specific material
+   output =  dose           # total deposit energy
+     axis =    yz           # axis of output
+     file = deposit_yz_all_focus_tumor.out     # file name of output for the above axis
      part =  all electron photon neutron      
     gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat
    epsout =    1            # (D=0) generate eps file by ANGEL
