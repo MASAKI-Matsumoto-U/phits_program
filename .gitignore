@@ -2,3 +2,6 @@
 KUR/data/trc_R_12_6/Air/1E9_Air/deposit_yz_all_err.jpeg
 KUR/data/trc_R_12_6/Water/1E9_water_ele/deposit_yz_all_err.jpeg
 KUR/data/trc_R_12_6/Water/1E9_water_ele/track_eng_photon.jpeg
+*.eps
+*.out
+*.dat

@@ -20,23 +20,40 @@ mat[7]   # Air (1.20e-3 g/cm3)　
           16O         -23.139
 	  40Ar         -1.288
 
+mat[20] # Tumor この組成はタンパク質を参考に決めたもの。適宜変更。
+        12C   -52
+        1H    -7
+        14N   -15
+        16O   -24
+        32S   -2
+
+                 
+
 [ Mat Name Color ]
    mat                 name     size            color
      0                 void     1.00        lightgray
      1            Polyeth_FiL   1.00        pastelblue 
      2                Water     1.00        pastelcyan     
      7                  Air     1.00            white 
+     20               Tumor     1.00        blue
 
 [Surface]
+$ 10番台:基本的なジオメトリ
 10  rpp    -30.0  30.0 -30.0  30.0 -15.0  30.0             $ buffer
 11  rpp    -30.0  30.0 -30.0  30.0 -10.0   0.0             $ collimator
 12  trc      0.0   0.0 -10.0   0.0   0.0  10.0  12.0  6.0  $ aperture
 13  rpp    -20.0  20.0 -20.0  20.0   0.0  30.0             $ water
 
+$ 20番台:腫瘍関連のジオメトリ
+set: c20[0.5] $ 腫瘍半径
+set: c21[0] $コリメータ(表面)からの深さ(基本的な始点座標はz=0)
+20  s      0 0 c21+c20 c20 $中心(0,0,c21+c20), 半径(c20)の球
+
 [Cell]
 100   7 -1.20e-3  -10 11 12 13
 101   1 -1.35  -11 12       $ collimator body
 102   7 -1.20e-3  -12               $ aperture
-103   2 -1        -13             $Hydrogel
+120   20 -1.2 -20                 $ Tumor 密度はタンパク質の密度を参考にした。適宜変更。
+103   2 -1        20 -13             $Hydrogel
 109  -1            10               $ outer void
 
